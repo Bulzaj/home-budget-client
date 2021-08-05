@@ -1,0 +1,18 @@
+.section-product-layout {
+  display: grid;
+  grid-template-rows: 1fr 20rem;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 10rem;
+  column-gap: 40rem;
+  padding: 6rem 3rem;
+  padding-bottom: 16rem;
+
+  &__title-container {
+    grid-column: 1/-1;
+    grid-row: 1 / 1;
+    text-align: center;
+  }
+
+  &__body-container {
+  }
+}

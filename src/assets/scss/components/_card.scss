@@ -1,0 +1,15 @@
+.card {
+  @include box-white;
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
+
+  &__title {
+    padding: 1rem 3rem;
+    border-bottom: 1px solid $color-black;
+  }
+
+  &__body {
+    padding: 2rem;
+  }
+}

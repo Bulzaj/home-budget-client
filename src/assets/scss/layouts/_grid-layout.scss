@@ -1,0 +1,13 @@
+.grid-layout {
+  display: grid;
+
+  &--two-col {
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+
+    @media (min-width: $screen-min-md) {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

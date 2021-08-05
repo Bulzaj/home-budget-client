@@ -1,0 +1,20 @@
+.section {
+  width: 100%;
+
+  &--background-grey {
+    background-color: $color-grey;
+  }
+
+  &--background-grey-light {
+    background-color: $color-grey-light;
+  }
+
+  &--full-height {
+    height: $section-height;
+  }
+
+  &--margin-top-and-bottom {
+    background-color: orange;
+    margin: 2rem;
+  }
+}

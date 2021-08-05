@@ -1,0 +1,48 @@
+.typography {
+  &__title {
+    letter-spacing: 0.9rem;
+    font-size: 5rem;
+    font-weight: 300;
+    text-align: center;
+
+    &--background-gradient-primary {
+      @include two-color-gradient($color-primary, 0.4, $color-secondary, 0.4);
+      border-radius: 0.7rem;
+      padding: 0.3rem;
+      color: $color-white;
+    }
+
+    &--background-gradient-secondary {
+      @include two-color-gradient(
+        $color-secondary-light,
+        0.4,
+        $color-primary-dark,
+        0.4
+      );
+      border-radius: 0.7rem;
+      padding: 0.3rem;
+      color: $color-white;
+    }
+  }
+
+  &__title-2 {
+    letter-spacing: 0.2em;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+
+  &__paragraph {
+    color: $color-grey-light;
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    &--color-black {
+      color: $color-black;
+    }
+
+    &--thin {
+      font-weight: 320;
+    }
+  }
+}
