@@ -15,10 +15,10 @@ const Section = (props) => {
 
   // If props.setSectionIdToPath is true, update url to actual showed on screen
   useEffect(() => {
-    if (props.setSeectionIdToPath) {
+    if (props.setSectionIdToPath) {
       history.push(`#${props.id}`);
     }
-  }, [isVisible, props.id, history]);
+  }, [isVisible, props.id, history, props.setSectionIdToPath]);
 
   return (
     <section
