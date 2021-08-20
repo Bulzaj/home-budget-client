@@ -9,12 +9,12 @@ const Navbar = (props) => {
       <nav className="navbar__nav">
         <FlexLayout styles={["space-between"]}>
           <NavbarItem>
-            <NavbarLink to="#overview">Home Budget</NavbarLink>
+            <NavbarLink to="">Home Budget</NavbarLink>
           </NavbarItem>
           <FlexLayout styles={["space-between"]}>
-            {props.hashLinks.map((hashLink) => (
-              <NavbarItem key={hashLink.name}>
-                <NavbarLink to={hashLink.to}>{hashLink.name}</NavbarLink>
+            {props.links?.map((link) => (
+              <NavbarItem key={link.label}>
+                <NavbarLink to={link.to}>{link.label}</NavbarLink>
               </NavbarItem>
             ))}
           </FlexLayout>
