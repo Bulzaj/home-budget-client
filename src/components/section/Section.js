@@ -13,8 +13,11 @@ const Section = (props) => {
 
   const history = useHistory();
 
+  // If props.setSectionIdToPath is true, update url to actual showed on screen
   useEffect(() => {
-    history.push(`#${props.id}`);
+    if (props.setSeectionIdToPath) {
+      history.push(`#${props.id}`);
+    }
   }, [isVisible, props.id, history]);
 
   return (
