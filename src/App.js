@@ -1,19 +1,18 @@
-import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/private-route/PrivateRoute";
 
 function App() {
-  const navHashLinks = [{ name: "Product", to: "#product" }];
-
   return (
     <div className="app">
       <Router>
-        <Navbar hashLinks={navHashLinks} />
         <Switch>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
           <Route path="/">
-            <main className="app__main">
-              <Home />
-            </main>
+            <Home />
           </Route>
         </Switch>
       </Router>
