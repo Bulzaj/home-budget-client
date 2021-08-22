@@ -1,0 +1,8 @@
+{
+  "realm": "Home-Budget",
+  "auth-server-url": "http://localhost:8000/auth/",
+  "ssl-required": "external",
+  "resource": "home-budget-client",
+  "public-client": true,
+  "confidential-port": 0
+}
