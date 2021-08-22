@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Keycloak from "keycloak-js";
+import { Alert } from "react-bootstrap";
 
 const Dashboard = (props) => {
   const [keycloak, setKeycloak] = useState(null);
@@ -15,7 +16,9 @@ const Dashboard = (props) => {
 
   if (keycloak) {
     if (isAuth) {
-      return <h1>Welcome in Home Budget Dashboard</h1>;
+      return (
+        <Alert variant="success">Welcome in Home Budget app dashboard!</Alert>
+      );
     } else return <h1>Unable to login</h1>;
   } else return <h1>Initializing Keycloak</h1>;
 };

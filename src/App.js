@@ -2,6 +2,8 @@ import Home from "./pages/home/Home";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   return (
     <div className="app">
