@@ -1,0 +1,18 @@
+.link {
+  text-decoration: none;
+  font-size: 3rem;
+  font-family: inherit;
+  transition: all 0.3s;
+
+  &--white {
+    color: $color-white;
+
+    &:hover {
+      color: $color-secondary;
+    }
+  }
+
+  &--margin-big {
+    margin: 7rem;
+  }
+}
