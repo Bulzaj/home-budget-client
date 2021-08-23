@@ -32,6 +32,8 @@
   }
 
   &__content-pusher {
-    height: calc(#{$navbar-height});
+    background-color: orangered;
+    width: 100%;
+    height: calc(#{$navbar-height} - 1rem);
   }
 }
