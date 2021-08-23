@@ -1,6 +1,4 @@
-import { Alert } from "react-bootstrap";
-
 const Dashboard = (props) => {
-  return <Alert variant="success">Welcome in Dashboard</Alert>;
+  return <div>Welcome in Dashboard</div>;
 };
 export default Dashboard;
