@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/navbar/navbar";
 import Section from "../../components/section/Section";
 import CenterBox from "../../layouts/center-box";
 
@@ -10,12 +9,9 @@ import Typography from "../../typography/typography";
 
 import { Form, Button, Container } from "react-bootstrap";
 
-const links = [{ to: "/dashboard", label: "Start Now!" }];
-
 const Home = () => {
   return (
     <div>
-      <Navbar links={links} />
       <Section id="overview" styles={["full-height"]}>
         <BackgroundImage
           img={backgroundImage1}
@@ -28,6 +24,7 @@ const Home = () => {
           <Typography.Title styles={["background-gradient-secondary"]}>
             For demanding
           </Typography.Title>
+          <Button>Start now!</Button>
         </CenterBox>
       </Section>
       <Section id="join" styles={["full-height", "background-grey-light"]}>

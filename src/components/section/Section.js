@@ -1,24 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import useOnScreen from "../../hooks/use-on-screen";
+import React, { useRef } from "react";
 import { styleMapper } from "../../utill/style-mapper";
 
 const Section = (props) => {
   const sectionRef = useRef(null);
-
-  const isVisible = useOnScreen(sectionRef, {
-    rootMargin: "0px",
-    threshold: 1.0,
-  });
-
-  const history = useHistory();
-
-  // If props.setSectionIdToPath is true, update url to actual showed on screen
-  useEffect(() => {
-    if (props.setSectionIdToPath) {
-      history.push(`#${props.id}`);
-    }
-  }, [isVisible, props.id, history, props.setSectionIdToPath]);
 
   return (
     <section
