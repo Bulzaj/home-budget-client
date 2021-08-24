@@ -1,17 +1,14 @@
 import React, { Fragment } from "react";
+import useSubcomponents from "../use-subcomponents";
 import { styleMapper } from "../utill/style-mapper";
 
 const Typography = (props) => {
-  const subcomponentList = Object.keys(Typography);
-
-  const subcomponents = subcomponentList.map((key) => {
-    return React.Children.map(props.children, (child) =>
-      child.type.name === key ? child : null
-    );
-  });
+  const subcomponents = useSubcomponents(Typography);
 
   return (
-    <Fragment>{subcomponents.map((subcomponent) => subcomponent)}</Fragment>
+    <Fragment className={styleMapper("typography", props.styles)}>
+      {subcomponents.render()}
+    </Fragment>
   );
 };
 
@@ -23,7 +20,9 @@ const Title = (props) => (
 Typography.Title = Title;
 
 const Title2 = (props) => (
-  <h2 className={styleMapper("typography__title-2")}>{props.children}</h2>
+  <h2 className={styleMapper("typography__title-2", props.styles)}>
+    {props.children}
+  </h2>
 );
 Typography.Title2 = Title2;
 
