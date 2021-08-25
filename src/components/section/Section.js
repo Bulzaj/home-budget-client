@@ -9,6 +9,10 @@ const Section = (props) => {
       id={props.id}
       ref={sectionRef}
       className={styleMapper("section", props.styles)}
+      style={{
+        backgroundImage: `url(${props.img})`,
+        backgroundSize: "cover",
+      }}
     >
       {props.children}
     </section>

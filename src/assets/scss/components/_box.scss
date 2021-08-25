@@ -1,0 +1,13 @@
+.box {
+  @include box-white;
+  width: 60%;
+  padding: 2.1rem;
+
+  &--width-sm {
+    width: 48rem;
+  }
+
+  &--rounded {
+    border-radius: 0.6rem;
+  }
+}

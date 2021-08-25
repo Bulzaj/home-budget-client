@@ -1,40 +1,59 @@
 import React from "react";
 import Section from "../../components/section/Section";
+import Box from "../../components/box/box";
+import Form from "../../components/form/form";
+import Button from "../../components/button/button";
+
 import CenterBox from "../../layouts/center-box";
-import BackgroundImage from "../../components/background-image/background-image";
-import backgroundImage1 from "../../assets/img/laniding_page_1.jpg";
-import newUserImage from "../../assets/img/new_user.png";
+import FlexLayout from "../../layouts/flex-layout";
+
+import { HiUser } from "react-icons/hi";
+import { RiLockPasswordFill } from "react-icons/ri";
+
+import backgroundImage2 from "../../assets/img/background_lowpoly.jpg";
 import Typography from "../../typography/typography";
-import { HashLink } from "react-router-hash-link";
 
 const Home = () => {
   return (
     <div>
-      <Section id="overview" styles={["full-height"]}>
-        <BackgroundImage
-          img={backgroundImage1}
-          styles={["gradient-primary-dark"]}
-        />
-        <CenterBox styles={["column"]}>
-          <Typography.Title styles={["background-gradient-primary"]}>
-            Professional tools
-          </Typography.Title>
-          <Typography.Title styles={["background-gradient-secondary"]}>
-            For demanding
-          </Typography.Title>
-          <HashLink
-            className="link link--white link--margin-big"
-            smooth
-            to="#join"
-          >
-            Join now!
-          </HashLink>
+      <Section id="join" img={backgroundImage2}>
+        <CenterBox>
+          <Box styles={["rounded", "width-sm"]}>
+            <FlexLayout styles={["justify-center"]}>
+              <Form>
+                <Form.Title>Log in</Form.Title>
+                <Form.Group>
+                  <Form.Label>Username</Form.Label>
+                  <Form.Input
+                    type="text"
+                    icon={HiUser}
+                    placeholder="Enter username here..."
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Password</Form.Label>
+                  <Form.Input
+                    type="password"
+                    icon={RiLockPasswordFill}
+                    placeholder="Enter password here..."
+                  />
+                </Form.Group>
+                <Button styles={["background-gradient", "full-width"]}>
+                  Login
+                </Button>
+                <Typography.Paragraph styles={["justify-center", "color-grey"]}>
+                  Have no account yet?
+                </Typography.Paragraph>
+                <Typography.Paragraph
+                  styles={["justify-center", "clickable", "color-grey-dark"]}
+                >
+                  Register now!
+                </Typography.Paragraph>
+              </Form>
+            </FlexLayout>
+          </Box>
         </CenterBox>
       </Section>
-      <Section
-        id="join"
-        styles={["full-height", "background-grey-light"]}
-      ></Section>
     </div>
   );
 };

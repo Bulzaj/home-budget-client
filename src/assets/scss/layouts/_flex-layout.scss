@@ -1,15 +1,15 @@
 .flex-layout {
   display: flex;
 
-  &--space-between {
-    justify-content: space-between;
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--align-center {
+    align-items: center;
   }
 
   &--column {
     flex-direction: column;
-  }
-
-  &--width-40 {
-    width: 40%;
   }
 }

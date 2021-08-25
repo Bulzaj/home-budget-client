@@ -6,9 +6,9 @@ const Typography = (props) => {
   const subcomponents = useSubcomponents(Typography);
 
   return (
-    <Fragment className={styleMapper("typography", props.styles)}>
+    <div className={styleMapper("typography__wrapper", props.styles)}>
       {subcomponents.render()}
-    </Fragment>
+    </div>
   );
 };
 
@@ -32,5 +32,12 @@ const Paragraph = (props) => (
   </p>
 );
 Typography.Paragraph = Paragraph;
+
+const Label = (props) => (
+  <label className={styleMapper("typography__label", props.styles)}>
+    {props.children}
+  </label>
+);
+Typography.Label = Label;
 
 export default Typography;
