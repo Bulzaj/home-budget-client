@@ -18,6 +18,15 @@
     font-size: 2rem;
     color: $color-grey-dark;
     padding: 0.6rem;
+
+    &--invalid {
+      @extend .form__input;
+      color: $color-danger;
+
+      &::placeholder {
+        color: $color-danger;
+      }
+    }
   }
 
   &__wrapper {

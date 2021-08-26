@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FlexLayout from "../../layouts/flex-layout";
 import Typography from "../../typography/typography";
 import useSubcomponents from "../../use-subcomponents";
@@ -34,6 +34,8 @@ const Label = (props) => (
 Form.Label = Label;
 
 const Input = (props) => {
+  const [isInvalid, setIsInvalid] = useState(true);
+
   return (
     <div className={styleMapper("form__box")}>
       <FlexLayout styles={["row", "align-center"]}>
@@ -41,7 +43,9 @@ const Input = (props) => {
           {<props.icon className="form__icon" />}
         </div>
         <input
-          className={"form__input"}
+          className={
+            "form__input" + `${isInvalid ? ", form__input--invalid" : ""}`
+          }
           type={props.type}
           placeholder={props.placeholder}
         />

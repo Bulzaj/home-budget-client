@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import useSubcomponents from "../use-subcomponents";
 import { styleMapper } from "../utill/style-mapper";
 
@@ -27,7 +27,10 @@ const Title2 = (props) => (
 Typography.Title2 = Title2;
 
 const Paragraph = (props) => (
-  <p className={styleMapper("typography__paragraph", props.styles)}>
+  <p
+    className={styleMapper("typography__paragraph", props.styles)}
+    onClick={props.onClick}
+  >
     {props.children}
   </p>
 );
