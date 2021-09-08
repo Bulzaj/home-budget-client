@@ -9,7 +9,7 @@ import Image from "../../components/image/image";
 import CenterBox from "../../layouts/center-box";
 import FlexLayout from "../../layouts/flex-layout";
 
-import { HiUser } from "react-icons/hi";
+import { HiMail } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import backgroundImage from "../../assets/img/background_lowpoly.jpg";
@@ -18,7 +18,6 @@ import newUserImage from "../../assets/img/new_user.ico";
 
 const Home = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [formData, setFormData] = useState(null);
 
   const toggleFormHandler = () => {
     setIsLoginForm((prevState) => !prevState);
@@ -27,17 +26,13 @@ const Home = () => {
   const loginForm = (
     <Form>
       <Form.Title>Log in</Form.Title>
-      <Image src={authImage} />
+      <Image src={authImage} alt="auth image" />
       <Form.Group>
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Input
-          requirements={{
-            min: 3,
-            max: 20,
-          }}
-          type="text"
-          icon={HiUser}
-          placeholder="Enter username here..."
+          type="email"
+          icon={HiMail}
+          placeholder="Enter email here..."
         />
       </Form.Group>
       <Form.Group>
@@ -64,13 +59,13 @@ const Home = () => {
   const registerForm = (
     <Form>
       <Form.Title>Register</Form.Title>
-      <Image src={newUserImage} />
+      <Image src={newUserImage} alt="registration image" />
       <Form.Group>
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Input
-          type="text"
-          icon={HiUser}
-          placeholder="Enter username here..."
+          type="email"
+          icon={HiMail}
+          placeholder="Enter email here..."
         />
       </Form.Group>
       <Form.Group>

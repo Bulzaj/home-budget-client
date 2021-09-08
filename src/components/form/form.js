@@ -34,7 +34,11 @@ const Label = (props) => (
 Form.Label = Label;
 
 const Input = (props) => {
-  const [isInvalid, setIsInvalid] = useState(true);
+  const [value, setValue] = useState("");
+
+  const onChangeHandler = (e) => {
+    setValue(e.target.value);
+  };
 
   return (
     <div className={styleMapper("form__box")}>
@@ -43,10 +47,10 @@ const Input = (props) => {
           {<props.icon className="form__icon" />}
         </div>
         <input
-          className={
-            "form__input" + `${isInvalid ? ", form__input--invalid" : ""}`
-          }
+          onChange={onChangeHandler}
+          className="form__input"
           type={props.type}
+          value={value}
           placeholder={props.placeholder}
         />
       </FlexLayout>
