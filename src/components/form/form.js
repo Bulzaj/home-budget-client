@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FlexLayout from "../../layouts/flex-layout";
 import Typography from "../../typography/typography";
 import useSubcomponents from "../../hooks/use-subcomponents";
@@ -51,5 +51,32 @@ const Input = (props) => {
   );
 };
 Form.Input = Input;
+
+const Errors = (props) => {
+  let i = 0;
+
+  let errors = null;
+  if (props.errors.length) {
+    errors = (
+      <div className="form__error-box">
+        <ul className="error__list">
+          {props.errors.map((err) => {
+            i++;
+            return (
+              <li key={i} className="error__item">
+                <Typography.Paragraph styles={["color-danger"]}>
+                  {err}
+                </Typography.Paragraph>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+
+  return errors;
+};
+Form.Errors = Errors;
 
 export default Form;

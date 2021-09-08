@@ -1,5 +1,5 @@
 .form {
-  width: 100%;
+  min-width: 47rem;
 
   &__group {
     width: 100%;
@@ -38,6 +38,21 @@
       .form__wrapper {
         color: $color-primary;
       }
+    }
+  }
+
+  &__error-box {
+    background-color: $color-danger-light;
+    padding: 1rem 0.7rem;
+  }
+
+  .error {
+    &__list {
+      list-style: none;
+    }
+
+    &__item {
+      margin: 1rem 0;
     }
   }
 }

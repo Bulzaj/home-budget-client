@@ -12,14 +12,17 @@ import useFormData from "../../hooks/use-form-data";
 import axios from "axios";
 
 import { URL_API_AUTH } from "../../utill/url-consts";
+import { useState } from "react";
 
 // TODO: Invalid form data handling:
-// - user already exists,
-// - email address is invalid
-// - password is too short
-// - passwords are not same
+// - user already exists        [check]
+// - email address is invalid   [check]
+// - password is too short      [check]
+// - passwords are not same     [check]
+// - all fields are required
 const RegistrationForm = (props) => {
   const [formData, setFormData] = useFormData();
+  const [errors, setErrors] = useState([]);
 
   const emailOnChangeHandler = (e) => {
     setFormData({ email: e.target.value });
@@ -38,7 +41,9 @@ const RegistrationForm = (props) => {
     axios
       .post(URL_API_AUTH + "/register", formData)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        setErrors(err.response.data);
+      });
   };
 
   return (
@@ -71,6 +76,9 @@ const RegistrationForm = (props) => {
           placeholder="Enter password again..."
           onChange={passwordAgainOnChangeHandler}
         />
+      </Form.Group>
+      <Form.Group>
+        <Form.Errors errors={errors} />
       </Form.Group>
       <Button
         styles={["background-gradient", "full-width"]}
