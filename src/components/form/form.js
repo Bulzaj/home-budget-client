@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import FlexLayout from "../../layouts/flex-layout";
 import Typography from "../../typography/typography";
-import useSubcomponents from "../../use-subcomponents";
+import useSubcomponents from "../../hooks/use-subcomponents";
 import { styleMapper } from "../../utill/style-mapper";
 
 const Form = (props) => {
   const subcomponents = useSubcomponents(Form, props);
 
   return (
-    <div className={styleMapper("form", props.styles)}>
+    <form className={styleMapper("form", props.styles)}>
       {subcomponents.render()}
-    </div>
+    </form>
   );
 };
 
@@ -34,12 +34,6 @@ const Label = (props) => (
 Form.Label = Label;
 
 const Input = (props) => {
-  const [value, setValue] = useState("");
-
-  const onChangeHandler = (e) => {
-    setValue(e.target.value);
-  };
-
   return (
     <div className={styleMapper("form__box")}>
       <FlexLayout styles={["row", "align-center"]}>
@@ -47,10 +41,9 @@ const Input = (props) => {
           {<props.icon className="form__icon" />}
         </div>
         <input
-          onChange={onChangeHandler}
+          onChange={props.onChange}
           className="form__input"
           type={props.type}
-          value={value}
           placeholder={props.placeholder}
         />
       </FlexLayout>

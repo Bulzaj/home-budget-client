@@ -1,5 +1,5 @@
 import React from "react";
-import useSubcomponents from "../use-subcomponents";
+import useSubcomponents from "../hooks/use-subcomponents";
 import { styleMapper } from "../utill/style-mapper";
 
 const Typography = (props) => {
