@@ -93,6 +93,7 @@ const RegistrationForm = (props) => {
       </Typography.Paragraph>
       <Typography.Paragraph
         styles={["justify-center", "clickable", "color-grey-dark"]}
+        onClick={props.toggleForm}
       >
         Log in!
       </Typography.Paragraph>

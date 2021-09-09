@@ -1,3 +1,12 @@
+import Form from "../../components/form/form";
+import Image from "../../components/image/image";
+import Button from "../../components/button/button";
+import Typography from "../../typography/typography";
+
+import authImage from "../../assets/img/auth_image.png";
+import { HiMail } from "react-icons/hi";
+import { RiLockPasswordFill } from "react-icons/ri";
+
 const LoginForm = (props) => {
   return (
     <Form>
@@ -25,7 +34,7 @@ const LoginForm = (props) => {
       </Typography.Paragraph>
       <Typography.Paragraph
         styles={["justify-center", "clickable", "color-grey-dark"]}
-        onClick={toggleFormHandler}
+        onClick={props?.toggleForm}
       >
         Register now!
       </Typography.Paragraph>

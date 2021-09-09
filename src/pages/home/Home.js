@@ -5,17 +5,22 @@ import Box from "../../components/box/box";
 import CenterBox from "../../layouts/center-box";
 import FlexLayout from "../../layouts/flex-layout";
 import RegistrationForm from "../../containers/forms/registration-form";
+import LoginForm from "../../containers/forms/login-form";
 
 import backgroundImage from "../../assets/img/background_lowpoly.jpg";
 
 const Home = () => {
-  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [isLoginForm, setIsLoginForm] = useState(true);
 
   const toggleFormHandler = () => {
     setIsLoginForm((prevState) => !prevState);
   };
 
-  const form = isLoginForm ? null : <RegistrationForm />;
+  const form = isLoginForm ? (
+    <LoginForm toggleForm={toggleFormHandler} />
+  ) : (
+    <RegistrationForm toggleForm={toggleFormHandler} />
+  );
 
   return (
     <div>
