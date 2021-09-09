@@ -19,7 +19,7 @@ import { useState } from "react";
 // - email address is invalid   [check]
 // - password is too short      [check]
 // - passwords are not same     [check]
-// - all fields are required
+// - all fields are required    [check]
 const RegistrationForm = (props) => {
   const [formData, setFormData] = useFormData();
   const [errors, setErrors] = useState([]);
@@ -40,7 +40,9 @@ const RegistrationForm = (props) => {
     e.preventDefault();
     axios
       .post(URL_API_AUTH + "/register", formData)
-      .then((res) => console.log(res))
+      .then((res) => {
+        setErrors([]);
+      })
       .catch((err) => {
         setErrors(err.response.data);
       });
