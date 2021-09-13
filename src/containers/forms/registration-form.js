@@ -14,12 +14,6 @@ import axios from "axios";
 import { URL_API_AUTH } from "../../utill/url-consts";
 import { useState } from "react";
 
-// TODO: Invalid form data handling:
-// - user already exists        [check]
-// - email address is invalid   [check]
-// - password is too short      [check]
-// - passwords are not same     [check]
-// - all fields are required    [check]
 const RegistrationForm = (props) => {
   const [formData, setFormData] = useFormData();
   const [errors, setErrors] = useState([]);
