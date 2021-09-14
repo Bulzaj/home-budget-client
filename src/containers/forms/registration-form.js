@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import Typography from "../../typography/typography";
@@ -9,14 +10,14 @@ import newUserImage from "../../assets/img/new_user.ico";
 
 import useFormData from "../../hooks/use-form-data";
 
-import axios from "axios";
-
-import { URL_API_AUTH } from "../../utill/url-consts";
-import { useState } from "react";
+import { useAuth } from "../../hooks/use-auth";
+import { useHistory } from "react-router";
 
 const RegistrationForm = (props) => {
   const [formData, setFormData] = useFormData();
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
+  const auth = useAuth();
 
   const emailOnChangeHandler = (e) => {
     setFormData({ email: e.target.value });
@@ -32,14 +33,9 @@ const RegistrationForm = (props) => {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-    axios
-      .post(URL_API_AUTH + "/register", formData)
-      .then((res) => {
-        setErrors([]);
-      })
-      .catch((err) => {
-        setErrors(err.response.data);
-      });
+    auth
+      .register(formData, () => history.push("/dashboard"))
+      .catch((err) => setErrors(err.response.data));
   };
 
   return (
