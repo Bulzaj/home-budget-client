@@ -26,6 +26,27 @@ const Title2 = (props) => (
 );
 Typography.Title2 = Title2;
 
+const Title3 = (props) => (
+  <h3 className={styleMapper("typography__title-3", props.styles)}>
+    {props.children}
+  </h3>
+);
+Typography.Title3 = Title3;
+
+const Title4 = (props) => (
+  <h4 className={styleMapper("typography__title-4", props.styles)}>
+    {props.children}
+  </h4>
+);
+Typography.Title4 = Title4;
+
+const Title5 = (props) => (
+  <h5 className={styleMapper("typography__title-5", props.styles)}>
+    {props.children}
+  </h5>
+);
+Typography.Title5 = Title5;
+
 const Paragraph = (props) => (
   <p
     className={styleMapper("typography__paragraph", props.styles)}

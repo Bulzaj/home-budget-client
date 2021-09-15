@@ -21,6 +21,20 @@
     }
   }
 
+  &__title-3 {
+    font-size: 3.3rem;
+    font-weight: 300;
+  }
+
+  &__title-4 {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  &__title-5 {
+    font-size: 1.1;
+  }
+
   &__paragraph {
     color: $color-black;
     font-size: 1.1rem;
