@@ -1,0 +1,16 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color-black, 0.48);
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+  }
+}
