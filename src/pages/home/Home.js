@@ -14,10 +14,10 @@ import { useHistory } from "react-router";
 
 const Home = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const auth = useAuth();
+  const { user } = useAuth();
   const history = useHistory();
 
-  useEffect(() => auth.user && history.push("/dashboard"));
+  useEffect(() => user && history.push("/dashboard"), [user, history]);
 
   const toggleFormHandler = () => {
     setIsLoginForm((prevState) => !prevState);
@@ -29,7 +29,7 @@ const Home = () => {
     <RegistrationForm toggleForm={toggleFormHandler} />
   );
 
-  if (!auth.user) {
+  if (!user) {
     return (
       <div>
         <Section id="join" img={backgroundImage}>

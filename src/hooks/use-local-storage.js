@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 const useLocalStorage = () => {
-  const storage = useRef(window.localStorage);
+  const storage = useRef(localStorage);
 
   const set = (key, value) => {
     storage.current.setItem(key, value);
