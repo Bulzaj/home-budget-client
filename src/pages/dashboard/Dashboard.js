@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "../../hooks/use-auth";
 import Button from "../../components/button/button";
-import Select from "../../components/select/select";
-
-import Modal from "../../components/modal/modal";
+import AccountInitModal from "../../containers/account-init-modal";
 
 const Dashboard = (props) => {
   const history = useHistory();
@@ -18,11 +16,7 @@ const Dashboard = (props) => {
   return (
     <div>
       <Button onClick={(e) => setShowModal(true)}>Show modal</Button>
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h1>
-          <Select title="Select currency" />
-        </h1>
-      </Modal>
+      <AccountInitModal show={showModal} onClose={() => setShowModal(false)} />
       <h1>Dashboard of might and destiny</h1>
     </div>
   );

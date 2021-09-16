@@ -5,4 +5,9 @@
   &--rounded {
     border-radius: 0.6rem;
   }
+
+  &--color-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
