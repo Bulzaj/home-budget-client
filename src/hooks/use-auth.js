@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { URL_API_AUTH } from "../utill/url-consts";
 import useLocalStorage from "./use-local-storage";
 
@@ -20,8 +20,27 @@ const useProvideAuth = () => {
   const [errors, setErrors] = useState([]);
   const localStorage = useLocalStorage();
 
+  useEffect(() => {
+    console.log("asdsad");
+    const accessToken = localStorage.get("accessToken");
+
+    const fetchUser = async (accessToken) => {
+      const reqOptions = {
+        headers: {
+          authorization: `bearer ${accessToken}`,
+        },
+      };
+
+      const user = await axios
+        .get(URL_API_AUTH + "/user", reqOptions)
+        .catch((err) => console.error(err));
+
+      if (user) setUser({ email: user.data.email });
+    };
+    fetchUser(accessToken);
+  }, []);
+
   const onLoginSuccess = (response, onDone) => {
-    console.log(response);
     setErrors([]);
     setUser({ email: response.data.email });
 

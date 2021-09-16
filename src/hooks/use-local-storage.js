@@ -9,7 +9,7 @@ const useLocalStorage = () => {
 
   const get = (key) => {
     if (!validateKey) throw new Error(`Item key: ${key} does not exists`);
-    storage.current.getItem(key);
+    return storage.current.getItem(key);
   };
 
   const remove = (key) => {
