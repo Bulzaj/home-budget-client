@@ -48,22 +48,10 @@
   }
 
   &__paragraph {
-    color: $color-black;
+    color: inherit;
     font-size: 1.7rem;
     font-weight: 600;
     margin-top: 0.14rem;
-
-    &--color-grey {
-      color: $color-grey;
-    }
-
-    &--color-grey-dark {
-      color: $color-grey-dark;
-    }
-
-    &--color-danger {
-      color: $color-danger;
-    }
 
     &--justify-center {
       text-align: center;

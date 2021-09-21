@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "../../hooks/use-auth";
-import Button from "../../components/button/button";
-import AccountInitModal from "../../containers/account-init-modal";
+import axios from "axios";
+import { URL_API_CURRENCIES } from "../../utill/url-consts";
 
 const Dashboard = (props) => {
   const history = useHistory();
   const auth = useAuth();
-  const [showModal, setShowModal] = useState(false);
+  const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
     if (!auth.user) history.push("/");
-  });
+  }, [auth.user, history]);
 
-  return (
-    <div>
-      <Button onClick={(e) => setShowModal(true)}>Show modal</Button>
-      <AccountInitModal show={showModal} onClose={() => setShowModal(false)} />
-      <h1>Dashboard of might and destiny</h1>
-    </div>
-  );
+  useEffect(() => {
+    let mounted = true;
+    const getCurrencies = async () => {
+      const currencies = await axios.get(URL_API_CURRENCIES);
+      const currenciesArray = Object.values(currencies.data);
+
+      setCurrencies((prevState) => {
+        return [...prevState, ...currenciesArray];
+      });
+    };
+
+    if (mounted) getCurrencies();
+
+    return () => (mounted = false);
+  }, []);
+
+  return null;
 };
 export default Dashboard;

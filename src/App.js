@@ -3,6 +3,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ProvideAuth } from "./hooks/use-auth";
 
+// TODO: Handle api connection error
 function App() {
   return (
     <ProvideAuth>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlexLayout from "../../layouts/flex-layout";
 import Typography from "../../typography/typography";
 import useSubcomponents from "../../hooks/use-subcomponents";
 import { styleMapper } from "../../utill/style-mapper";
-
-import { IoIosArrowDropdown, IoMdCloseCircleOutline } from "react-icons/io";
+import Box from "../box/box";
 
 const Form = (props) => {
   const subcomponents = useSubcomponents(Form, props);
@@ -55,22 +54,6 @@ const Input = (props) => {
   );
 };
 Form.Input = Input;
-
-const Dropdown = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className={styleMapper("dropdown", props.styles)}>
-      <div className="dropdown__header">
-        <FlexLayout styles={["justify-space-between"]}>
-          <Typography.Title4>{props.title}</Typography.Title4>
-          {!isOpen ? <IoIosArrowDropdown /> : <IoMdCloseCircleOutline />}
-        </FlexLayout>
-      </div>
-    </div>
-  );
-};
-Form.Dropdown = Dropdown;
 
 const Errors = (props) => {
   let i = 0;
