@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { URL_API_AUTH } from "../utill/url-consts";
-import useLocalStorage from "./use-local-storage";
 
 const authContext = createContext();
 
@@ -18,11 +17,10 @@ export const useAuth = () => useContext(authContext);
 const useProvideAuth = () => {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState([]);
-  const localStorage = useLocalStorage();
 
   useEffect(() => {
     console.log("asdsad");
-    const accessToken = localStorage.get("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
     const fetchUser = async (accessToken) => {
       const reqOptions = {
@@ -44,8 +42,8 @@ const useProvideAuth = () => {
     setErrors([]);
     setUser({ email: response.data.email });
 
-    localStorage.set("accessToken", response.data.accessToken);
-    localStorage.set("refreshToken", response.data.refreshToken);
+    localStorage.setItem("accessToken", response.data.accessToken);
+    localStorage.setItem("refreshToken", response.data.refreshToken);
     onDone && onDone();
   };
 
