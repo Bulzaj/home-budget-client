@@ -1,6 +1,44 @@
 .form {
+  width: 100%;
 }
 
 .input__wrapper {
   width: 100%;
+  border-bottom: 1px solid var(--color-grey-dark);
+  display: flex;
+}
+
+.icon__wrapper {
+  background-color: var(--color-grey-dark);
+  color: var(--color-grey-light);
+  font-size: 1.3rem;
+  padding: 0.3rem;
+  border-top-left-radius: 11px;
+}
+
+.input {
+  border: none;
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0 0.4rem;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input__wrapper:focus-within {
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.input__wrapper:focus-within .icon__wrapper {
+  background-color: var(--color-primary);
+}
+
+.input__wrapper:hover {
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.input__wrapper:hover .icon__wrapper {
+  background-color: var(--color-primary);
 }
