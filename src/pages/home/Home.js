@@ -1,6 +1,12 @@
-const Home = () => {
+import LoginForm from "../../containers/login-form/login-form";
+import classes from "./home.module.css";
 
-  return ();
-}
+const Home = () => {
+  return (
+    <div className={classes.home}>
+      <LoginForm />
+    </div>
+  );
+};
 
 export default Home;

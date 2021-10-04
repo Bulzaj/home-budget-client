@@ -19,7 +19,6 @@ const useProvideAuth = () => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    console.log("asdsad");
     const accessToken = localStorage.getItem("accessToken");
 
     const fetchUser = async (accessToken) => {

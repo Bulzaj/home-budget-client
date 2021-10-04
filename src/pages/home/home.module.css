@@ -1,0 +1,5 @@
+.home {
+  height: 100vh;
+  background-image: url("../../assets/img/background_lowpoly.jpg");
+  background-size: cover;
+}
