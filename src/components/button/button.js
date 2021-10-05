@@ -1,13 +1,7 @@
 import classes from "./button.module.css";
+import { styles } from "../../utill/styles";
 
 const Button = (props) => {
-  const styles = [classes.button];
-
-  props.styles &&
-    props.styles.forEach((style) => {
-      styles.push(classes[`${style}`]);
-    });
-
   let icon = null;
   if (props.icon) {
     icon = (
@@ -17,7 +11,10 @@ const Button = (props) => {
     );
   }
   return (
-    <button className={styles.join(" ")} onClick={props.onClick}>
+    <button
+      className={styles(classes, "button", props.styles)}
+      onClick={props.onClick}
+    >
       {icon}
       {props.children}
     </button>

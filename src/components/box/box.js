@@ -1,13 +1,10 @@
 import classes from "./box.module.css";
+import { styles } from "../../utill/styles";
 
 const Box = (props) => {
-  const styles = [classes.box];
-  props.styles &&
-    props.styles.forEach((style) => {
-      styles.push(classes[`${style}`]);
-    });
-
-  return <div className={styles.join(" ")}>{props.children}</div>;
+  return (
+    <div className={styles(classes, "box", props.styles)}>{props.children}</div>
+  );
 };
 
 const Divider = (props) => {
