@@ -5,9 +5,11 @@ body {
 }
 
 :root {
-  --color-grey: hsl(0, 0%, 91%);
+  --color-grey: hsl(0, 0%, 76%);
   --color-grey-dark: hsl(0, 0%, 41%);
   --color-grey-light: hsl(0, 0%, 97%);
+
+  --color-dark: hsl(0, 0%, 15%);
 
   --color-primary: hsl(190, 60%, 50%);
 

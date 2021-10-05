@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { URL_API_ACCOUNT } from "../../utill/url-consts";
 import { useAuth } from "../../hooks/use-auth";
 import { useHistory } from "react-router";
+import classes from "./dashboard.module.css";
+import NavBar from "../../components/nav-bar/nav-bar";
 import SideBar from "../../components/side-bar/side-bar";
 
 const Dashboard = (props) => {
@@ -28,8 +30,10 @@ const Dashboard = (props) => {
   }, [accessToken, redirect]);
 
   return (
-    <div>
-      <SideBar></SideBar>
+    <div className={classes.container}>
+      <NavBar>
+        <SideBar.ToggleButton />
+      </NavBar>
     </div>
   );
 };

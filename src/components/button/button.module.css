@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   font-size: 1rem;
+  outline: none;
 }
 
 .button:hover {
@@ -37,4 +38,18 @@
 
 .icon_wrapper {
   margin: 0 0.4rem;
+}
+
+.no-border {
+  border: none;
+  color: var(--color-grey);
+}
+
+.no-border:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.font-size-lg {
+  font-size: 2.1rem;
 }
