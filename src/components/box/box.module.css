@@ -18,6 +18,10 @@
   box-shadow: none;
 }
 
+.danger {
+  background-color: var(--color-danger-light);
+}
+
 .full-width {
   width: 100%;
 }

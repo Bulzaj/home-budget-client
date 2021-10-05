@@ -1,2 +1,40 @@
 .button {
+  padding: 0.6rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.4rem 0.2rem;
+  color: var(--color-grey-dark);
+  border: 2px solid var(--color-primary);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-grey-light);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.link {
+  border: none;
+  border-bottom: 1px solid var(--color-grey-dark);
+  border-radius: 0;
+  padding: 0.1rem 0.2rem;
+}
+
+.link:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.icon_wrapper {
+  margin: 0 0.4rem;
 }
