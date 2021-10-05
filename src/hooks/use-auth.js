@@ -16,7 +16,6 @@ export const useAuth = () => useContext(authContext);
 
 const useProvideAuth = () => {
   const [user, setUser] = useState(null);
-  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -38,7 +37,6 @@ const useProvideAuth = () => {
   }, []);
 
   const onLoginSuccess = (response, onDone) => {
-    setErrors([]);
     setUser({ email: response.data.email });
 
     localStorage.setItem("accessToken", response.data.accessToken);
@@ -60,7 +58,6 @@ const useProvideAuth = () => {
 
   return {
     user,
-    errors,
     register,
     login,
   };
