@@ -37,7 +37,7 @@ const useProvideAuth = () => {
   }, []);
 
   const onLoginSuccess = (response, onDone) => {
-    setUser({ email: response.data.email });
+    setUser({ email: response.data.email, id: response.data.id });
 
     localStorage.setItem("accessToken", response.data.accessToken);
     localStorage.setItem("refreshToken", response.data.refreshToken);
