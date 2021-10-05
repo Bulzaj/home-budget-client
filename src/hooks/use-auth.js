@@ -56,9 +56,14 @@ const useProvideAuth = () => {
       onDone
     );
 
+  const getAccessToken = () => {
+    return localStorage.getItem("accessToken");
+  };
+
   return {
     user,
     register,
     login,
+    getAccessToken,
   };
 };
