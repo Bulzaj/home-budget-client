@@ -1,7 +1,69 @@
-.side_bar {
+.sidebarCollapse {
   height: 100%;
   width: 18rem;
   position: fixed;
   z-index: 1;
-  background-color: orangered;
+  padding: 0.4rem 0.6rem;
+  background-color: var(--color-secondary);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  color: var(--color-grey);
+  animation-name: collapse;
+  animation-duration: 0.3s;
+}
+
+@keyframes collapse {
+  0% {
+    background-color: var(--color-primary);
+    margin-left: -100%;
+  }
+  100% {
+    background-color: var(--color-secondary);
+    margin-left: 0;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebarContent {
+}
+
+.sidebarStatic {
+}
+
+.title {
+  color: var(--color-grey);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0.6rem;
+  transition: color 0.2s;
+}
+
+.item:hover {
+  color: var(--color-primary);
+}
+
+.label {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--color-grey);
+  line-height: 0.1rem;
+  margin: 0.8rem 0.3rem;
+  background-color: var(--color-secondary);
+}
+
+.label span {
+  background-color: var(--color-secondary);
+  padding: 0rem 0.3rem;
 }

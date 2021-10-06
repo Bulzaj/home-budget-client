@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import classes from "./dashboard.module.css";
 import NavBar from "../../components/nav-bar/nav-bar";
 import SideBar from "../../components/side-bar/side-bar";
+import { ProvideCollapseSideBar } from "../../hooks/use-collapse-sidebar";
 
 const Dashboard = (props) => {
   const [accounts, setAccounts] = useState([]);
@@ -21,7 +22,7 @@ const Dashboard = (props) => {
     const fetchAccounts = async () => {
       try {
         const accounts = await axios.get(URL_API_ACCOUNT, config);
-        setAccounts(accounts);
+        setAccounts(accounts.data[0].accounts);
       } catch (err) {
         redirect("/");
       }
@@ -29,11 +30,29 @@ const Dashboard = (props) => {
     fetchAccounts();
   }, [accessToken, redirect]);
 
+  console.log(accounts);
+
   return (
     <div className={classes.container}>
-      <NavBar>
-        <SideBar.ToggleButton />
-      </NavBar>
+      <ProvideCollapseSideBar>
+        <NavBar>
+          <SideBar.ToggleButton />
+        </NavBar>
+        <SideBar>
+          <SideBar.Label>Accounts</SideBar.Label>
+          {accounts.map((account) => {
+            return (
+              <SideBar.Item key={account.name}>
+                <h4>{account.name}</h4>
+                <h4>
+                  {account.ammount} {account.currencyCode}
+                </h4>
+              </SideBar.Item>
+            );
+          })}
+        </SideBar>
+        Test text of destiny
+      </ProvideCollapseSideBar>
     </div>
   );
 };

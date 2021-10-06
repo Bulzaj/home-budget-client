@@ -6,4 +6,5 @@
   background-color: var(--color-dark);
   color: var(--color-grey-light);
   margin-bottom: 1.1rem;
+  box-shadow: var(--shadow);
 }
