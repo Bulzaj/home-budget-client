@@ -64,7 +64,11 @@ const ToggleButton = (props) => {
 SideBar.ToggleButton = ToggleButton;
 
 const Item = (props) => {
-  return <div className={classes.item}>{props.children}</div>;
+  return (
+    <div onClick={props.onClick} className={classes.item}>
+      {props.children}
+    </div>
+  );
 };
 SideBar.Item = Item;
 

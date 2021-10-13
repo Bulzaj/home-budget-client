@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { URL_API_ACCOUNT } from "../../utill/url-consts";
 import { useAuth } from "../../hooks/use-auth";
 import { useHistory } from "react-router";
-import classes from "./dashboard.module.css";
 import NavBar from "../../components/nav-bar/nav-bar";
 import SideBar from "../../components/side-bar/side-bar";
 import { ProvideCollapseSideBar } from "../../hooks/use-collapse-sidebar";
+import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
+import List from "../../components/list/list";
 
 const Dashboard = (props) => {
   const [accounts, setAccounts] = useState([]);
@@ -30,30 +31,30 @@ const Dashboard = (props) => {
     fetchAccounts();
   }, [accessToken, redirect]);
 
+  const itemWrapper = (item) => (
+    <SideBar.Item>
+      <h4>{item.name}</h4>
+      <h4>
+        {item.ammount} {item.currencyCode}
+      </h4>
+    </SideBar.Item>
+  );
+
   return (
-    <div className={classes.container}>
+    <DashboardLayout>
       <ProvideCollapseSideBar>
         <NavBar>
           <SideBar.ToggleButton />
         </NavBar>
-        <div className={classes.main}>
+        <DashboardLayout.Main>
           <SideBar>
             <SideBar.Label>Accounts</SideBar.Label>
-            {accounts.map((account) => {
-              return (
-                <SideBar.Item key={account.name}>
-                  <h4>{account.name}</h4>
-                  <h4>
-                    {account.ammount} {account.currencyCode}
-                  </h4>
-                </SideBar.Item>
-              );
-            })}
+            <List itemKey="_id" items={accounts} wrapper={itemWrapper} />
           </SideBar>
-          <div className={classes.content}>Text of destiny</div>
-        </div>
+          <DashboardLayout.Content>Text of destiny</DashboardLayout.Content>
+        </DashboardLayout.Main>
       </ProvideCollapseSideBar>
-    </div>
+    </DashboardLayout>
   );
 };
 
