@@ -30,28 +30,28 @@ const Dashboard = (props) => {
     fetchAccounts();
   }, [accessToken, redirect]);
 
-  console.log(accounts);
-
   return (
     <div className={classes.container}>
       <ProvideCollapseSideBar>
         <NavBar>
           <SideBar.ToggleButton />
         </NavBar>
-        <SideBar>
-          <SideBar.Label>Accounts</SideBar.Label>
-          {accounts.map((account) => {
-            return (
-              <SideBar.Item key={account.name}>
-                <h4>{account.name}</h4>
-                <h4>
-                  {account.ammount} {account.currencyCode}
-                </h4>
-              </SideBar.Item>
-            );
-          })}
-        </SideBar>
-        Test text of destiny
+        <div className={classes.main}>
+          <SideBar>
+            <SideBar.Label>Accounts</SideBar.Label>
+            {accounts.map((account) => {
+              return (
+                <SideBar.Item key={account.name}>
+                  <h4>{account.name}</h4>
+                  <h4>
+                    {account.ammount} {account.currencyCode}
+                  </h4>
+                </SideBar.Item>
+              );
+            })}
+          </SideBar>
+          <div className={classes.content}>Text of destiny</div>
+        </div>
       </ProvideCollapseSideBar>
     </div>
   );

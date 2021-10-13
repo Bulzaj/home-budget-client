@@ -1,4 +1,15 @@
 .container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+}
+
+.content {
+  padding: 1.1rem 1.9rem;
+  width: 100%;
 }
