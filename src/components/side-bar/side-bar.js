@@ -5,7 +5,7 @@ import useWindowDimmensions from "../../hooks/use-window-dimmensions";
 import { useCollapseSidebar } from "../../hooks/use-collapse-sidebar";
 import { FaRegWindowClose } from "react-icons/fa";
 
-const BREAKPOINT = 400;
+const BREAKPOINT = 630;
 
 const SideBar = (props) => {
   const { width } = useWindowDimmensions();

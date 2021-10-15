@@ -5,7 +5,7 @@ body {
 }
 
 :root {
-  --color-grey: hsl(0, 0%, 76%);
+  --color-grey: hsl(0, 0%, 80%);
   --color-grey-dark: hsl(0, 0%, 41%);
   --color-grey-light: hsl(0, 0%, 97%);
 
@@ -19,7 +19,7 @@ body {
   --color-danger-dark: hsl(0, 100%, 35%);
   --color-danger-light: hsl(0, 100%, 71%);
 
-  --breakpoint: 400px;
+  --breakpoint: 630px;
 
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

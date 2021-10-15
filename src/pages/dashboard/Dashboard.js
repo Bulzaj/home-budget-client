@@ -11,6 +11,7 @@ import SideBar from "../../components/side-bar/side-bar";
 import { ProvideCollapseSideBar } from "../../hooks/use-collapse-sidebar";
 import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
 import List from "../../components/list/list";
+import Card from "../../components/card/card";
 
 // TODO: handle errors right way
 const Dashboard = (props) => {
@@ -78,12 +79,14 @@ const Dashboard = (props) => {
   };
 
   return (
-    <DashboardLayout>
-      <ProvideCollapseSideBar>
-        <NavBar>
-          <SideBar.ToggleButton />
-        </NavBar>
-        <DashboardLayout.Main>
+    <ProvideCollapseSideBar>
+      <DashboardLayout>
+        <DashboardLayout.Nav>
+          <NavBar>
+            <SideBar.ToggleButton />
+          </NavBar>
+        </DashboardLayout.Nav>
+        <DashboardLayout.Side>
           <SideBar>
             <SideBar.Label>Accounts</SideBar.Label>
             <List
@@ -93,10 +96,57 @@ const Dashboard = (props) => {
               onItemClick={handleAccountClick}
             />
           </SideBar>
-          <DashboardLayout.Content>Text of destiny</DashboardLayout.Content>
+        </DashboardLayout.Side>
+        <DashboardLayout.Main>
+          <DashboardLayout.Content>
+            <Card title="Card 1">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                feugiat eros id sapien malesuada vehicula. Donec in porttitor
+                tortor. Mauris pellentesque dignissim magna ut posuere. Morbi
+                elit mi, gravida suscipit felis id, tincidunt pretium mi. Nam
+                pharetra metus sit amet feugiat dignissim. Proin in luctus nibh,
+                ac accumsan elit. In condimentum sodales bibendum. Ut vitae
+                malesuada urna.
+              </p>
+            </Card>
+            <Card title="Card 1">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                feugiat eros id sapien malesuada vehicula. Donec in porttitor
+                tortor. Mauris pellentesque dignissim magna ut posuere. Morbi
+                elit mi, gravida suscipit felis id, tincidunt pretium mi. Nam
+                pharetra metus sit amet feugiat dignissim. Proin in luctus nibh,
+                ac accumsan elit. In condimentum sodales bibendum. Ut vitae
+                malesuada urna.
+              </p>
+            </Card>
+            <Card title="Card 1">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                feugiat eros id sapien malesuada vehicula. Donec in porttitor
+                tortor. Mauris pellentesque dignissim magna ut posuere. Morbi
+                elit mi, gravida suscipit felis id, tincidunt pretium mi. Nam
+                pharetra metus sit amet feugiat dignissim. Proin in luctus nibh,
+                ac accumsan elit. In condimentum sodales bibendum. Ut vitae
+                malesuada urna.
+              </p>
+            </Card>
+            <Card title="Card 1">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                feugiat eros id sapien malesuada vehicula. Donec in porttitor
+                tortor. Mauris pellentesque dignissim magna ut posuere. Morbi
+                elit mi, gravida suscipit felis id, tincidunt pretium mi. Nam
+                pharetra metus sit amet feugiat dignissim. Proin in luctus nibh,
+                ac accumsan elit. In condimentum sodales bibendum. Ut vitae
+                malesuada urna.
+              </p>
+            </Card>
+          </DashboardLayout.Content>
         </DashboardLayout.Main>
-      </ProvideCollapseSideBar>
-    </DashboardLayout>
+      </DashboardLayout>
+    </ProvideCollapseSideBar>
   );
 };
 
