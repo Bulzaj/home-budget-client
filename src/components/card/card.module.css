@@ -1,10 +1,5 @@
 .card {
   background-color: var(--color-grey);
   box-shadow: var(--shadow);
-  padding: 2rem;
-}
-
-.card:hover {
-  transition: transform 0.7s;
-  transform: translateY(-0.3rem);
+  padding: 0.9rem 0.7rem;
 }
