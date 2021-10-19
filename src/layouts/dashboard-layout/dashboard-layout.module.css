@@ -1,15 +1,30 @@
 .container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content repeat(2, auto);
+  grid-template-columns: min-content repeat(3, auto);
+  grid-template-areas:
+    "header header header header"
+    "side main main main"
+    "side main main main";
+}
+
+.nav {
+  grid-area: header;
+}
+
+.side {
+  grid-area: side;
 }
 
 .main {
-  height: 100%;
-  display: flex;
+  grid-area: main;
 }
 
 .content {
-  padding: 1.1rem 1.9rem;
-  width: 100%;
+  height: 100%;
+  padding: 0.9rem 0.4rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
