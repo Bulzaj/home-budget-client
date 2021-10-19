@@ -1,5 +1,27 @@
 .card {
-  background-color: var(--color-grey);
+  background-color: var(--color-grey-light);
   box-shadow: var(--shadow);
-  padding: 0.9rem 0.7rem;
+  border-radius: 0.4rem;
+}
+
+.titleWrapper {
+  padding: 2.5rem 0.9rem;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary) 35%,
+    var(--color-primary) 100%
+  );
+}
+
+.title {
+  color: var(--color-grey);
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+}
+
+.body {
 }

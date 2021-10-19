@@ -24,4 +24,13 @@ const List = (props) => {
   throw new Error("No items provided in props object");
 };
 
+const Item = (props) => {
+  return (
+    <div className={styles(classes, "item", props.styles)}>
+      {props.children}
+    </div>
+  );
+};
+List.Item = Item;
+
 export default List;

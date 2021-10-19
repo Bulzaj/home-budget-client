@@ -15,6 +15,8 @@ import {
 import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
 import List from "../../components/list/list";
 import Card from "../../components/card/card";
+import HistoryList from "../../containers/history-list/history-list";
+import { BsCalendar3 } from "react-icons/bs";
 
 // TODO: handle errors right way
 const Dashboard = (props) => {
@@ -99,7 +101,9 @@ const Dashboard = (props) => {
       </DashboardLayout.Side>
       <DashboardLayout.Main>
         <DashboardLayout.Content>
-          <Card title="History"></Card>
+          <Card title="History" icon={BsCalendar3}>
+            <HistoryList items={operationsHistory} />
+          </Card>
           <Card title="Card 1">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque

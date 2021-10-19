@@ -18,6 +18,7 @@
 }
 
 .main {
+  background-color: var(--color-grey);
   grid-area: main;
 }
 

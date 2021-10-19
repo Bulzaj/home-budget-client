@@ -17,7 +17,9 @@ body {
 
   --color-danger: hsl(0, 100%, 55%);
   --color-danger-dark: hsl(0, 100%, 35%);
-  --color-danger-light: hsl(0, 100%, 71%);
+  --color-danger-light: hsl(0, 56%, 63%);
+
+  --color-success: hsl(120, 45%, 60%);
 
   --breakpoint: 630px;
 
