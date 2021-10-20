@@ -1,6 +1,6 @@
 .box {
   padding: 0.7rem 1rem;
-  background-color: var(--color-grey);
+  background-color: var(--color-grey-light);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: flex;
   flex-direction: column;
