@@ -12,6 +12,7 @@ body {
   --color-dark: hsl(0, 0%, 15%);
 
   --color-primary: hsl(190, 60%, 50%);
+  --color-primary-dark: hsl(200, 100%, 30%);
 
   --color-secondary: hsl(260, 80%, 27%);
 
