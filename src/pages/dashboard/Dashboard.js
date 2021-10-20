@@ -1,9 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  URL_API_ACCOUNT,
-  URL_API_ACCOUNT_HISTORY,
-} from "../../utill/url-consts";
+import { URL_API_ACCOUNT } from "../../utill/url-consts";
 import { useAuth } from "../../hooks/use-auth";
 import { useHistory } from "react-router";
 import NavBar from "../../components/nav-bar/nav-bar";
@@ -15,14 +12,12 @@ import {
 import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
 import List from "../../components/list/list";
 import Card from "../../components/card/card";
-import HistoryList from "../../containers/history-list/history-list";
-import { AiOutlineCalendar } from "react-icons/ai";
+import HistoryCard from "../../containers/history-card/history-card";
 
 // TODO: handle errors right way
-const Dashboard = (props) => {
+const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSellectedAccount] = useState(null);
-  const [operationsHistory, setOperationsHistory] = useState([]);
   const accessToken = useAuth().getAccessToken();
   const redirect = useHistory().push;
   const { setNotVisible } = useCollapseSidebar();
@@ -45,28 +40,6 @@ const Dashboard = (props) => {
     fetchAccounts();
   }, [accessToken, redirect]);
 
-  // Fetch account opperations history
-  useEffect(() => {
-    const config = {
-      headers: {
-        authorization: `bearer ${accessToken}`,
-      },
-    };
-    const fetchHistory = async () => {
-      try {
-        const result = await axios.get(
-          URL_API_ACCOUNT_HISTORY(selectedAccount),
-          config
-        );
-        setOperationsHistory(result.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    if (accessToken && selectedAccount) fetchHistory();
-  }, [accessToken, selectedAccount]);
-
   const itemWrapper = (item) => (
     <SideBar.Item>
       <h4>{item.name}</h4>
@@ -77,7 +50,9 @@ const Dashboard = (props) => {
   );
 
   const handleAccountClick = (_e, key) => {
-    setSellectedAccount(key);
+    const selectedAccount = accounts.find((account) => account._id === key);
+    delete selectedAccount.operationsHistory;
+    setSellectedAccount(selectedAccount);
     setNotVisible();
   };
 
@@ -101,9 +76,10 @@ const Dashboard = (props) => {
       </DashboardLayout.Side>
       <DashboardLayout.Main>
         <DashboardLayout.Content>
-          <Card title="History" icon={AiOutlineCalendar}>
-            <HistoryList items={operationsHistory} />
-          </Card>
+          <HistoryCard
+            selectedAccount={selectedAccount}
+            accessToken={accessToken}
+          />
           <Card title="Card 1">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque

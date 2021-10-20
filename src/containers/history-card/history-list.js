@@ -2,6 +2,7 @@ import List from "../../components/list/list";
 import dateFormat from "dateformat";
 import classes from "./history-list.module.css";
 import { styles } from "../../utill/styles";
+import { ImCross } from "react-icons/im";
 
 const OPERATION_TYPES = ["INCOME", "EXPENDITURE"];
 
@@ -18,7 +19,9 @@ const HistoryList = (props) => {
       <List.Item styles={["undersocre"]}>
         <h3>{item.description}</h3>
         <div>
-          <h3 className={styles(classes, "amount", style)}>{item.ammount}</h3>
+          <h3 className={styles(classes, "amount", style)}>
+            {item.ammount} {props?.selectedCurrency}
+          </h3>
           <h4 className={classes.date}>
             {dateFormat(item.createdAt, dateMask)}
           </h4>
@@ -26,6 +29,15 @@ const HistoryList = (props) => {
       </List.Item>
     );
   };
+
+  if (!props.items.length) {
+    return (
+      <div className={classes.messageWrapper}>
+        <ImCross />
+        <h2 className={classes.message}>No history found</h2>
+      </div>
+    );
+  }
 
   return <List items={props.items} wrapper={wrapper} />;
 };

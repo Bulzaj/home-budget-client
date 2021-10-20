@@ -6,6 +6,11 @@ const Card = (props) => {
     icon = <span className={classes.icon}>{props.icon && <props.icon />}</span>;
   }
 
+  let footer = null;
+  if (props.footer) {
+    footer = <div className={classes.footerWrapper}>{props.footer}</div>;
+  }
+
   return (
     <div className={classes.card}>
       <div className={classes.titleWrapper}>
@@ -13,6 +18,7 @@ const Card = (props) => {
         {icon}
       </div>
       <div className={classes.body}>{props.children}</div>
+      {footer}
     </div>
   );
 };
