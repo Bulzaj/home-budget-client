@@ -12,12 +12,15 @@ body {
   --color-dark: hsl(0, 0%, 15%);
 
   --color-primary: hsl(190, 60%, 50%);
+  --color-primary-dark: hsl(200, 100%, 30%);
 
   --color-secondary: hsl(260, 80%, 27%);
 
   --color-danger: hsl(0, 100%, 55%);
   --color-danger-dark: hsl(0, 100%, 35%);
-  --color-danger-light: hsl(0, 100%, 71%);
+  --color-danger-light: hsl(0, 56%, 63%);
+
+  --color-success: hsl(120, 45%, 60%);
 
   --breakpoint: 630px;
 

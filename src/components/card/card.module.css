@@ -1,5 +1,47 @@
 .card {
-  background-color: var(--color-grey);
+  background-color: var(--color-grey-light);
   box-shadow: var(--shadow);
-  padding: 0.9rem 0.7rem;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleWrapper {
+  padding: 2.1rem 1.1rem;
+  background: linear-gradient(
+    to top right,
+    var(--color-secondary) 10%,
+    var(--color-primary) 80%
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: inherit;
+}
+
+.title {
+  color: var(--color-grey);
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+}
+
+.icon {
+  display: flex;
+  font-size: 4rem;
+  color: var(--color-primary-dark);
+}
+
+.body {
+  height: 100%;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.footerWrapper {
+  max-height: 11rem;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid var(--color-grey);
+  border-radius: inherit;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

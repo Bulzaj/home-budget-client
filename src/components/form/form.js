@@ -1,7 +1,12 @@
+import { styles } from "../../utill/styles";
 import classes from "./form.module.css";
 
 const Form = (props) => {
-  return <form className={classes.form}>{props.children}</form>;
+  return (
+    <form className={styles(classes, "form", props.styles)}>
+      {props.children}
+    </form>
+  );
 };
 
 const Input = (props) => {
@@ -26,5 +31,26 @@ const Input = (props) => {
   );
 };
 Form.Input = Input;
+
+const Group = (props) => {
+  return (
+    <div className={styles(classes, "group", props.styles)}>
+      {props.children}
+    </div>
+  );
+};
+Form.Group = Group;
+
+const Date = (props) => {
+  return (
+    <input className={classes.date} type="date" onChange={props.onChange} />
+  );
+};
+Form.Date = Date;
+
+const Label = (props) => {
+  return <label className={classes.label}>{props.children}</label>;
+};
+Form.Label = Label;
 
 export default Form;
