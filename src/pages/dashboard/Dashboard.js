@@ -32,7 +32,7 @@ const Dashboard = () => {
     const fetchAccounts = async () => {
       try {
         const accounts = await axios.get(URL_API_ACCOUNT, config);
-        setAccounts(accounts.data[0].accounts);
+        setAccounts(accounts.data);
       } catch (err) {
         redirect("/");
       }
@@ -60,7 +60,12 @@ const Dashboard = () => {
     <DashboardLayout>
       <DashboardLayout.Nav>
         <NavBar>
-          <SideBar.ToggleButton />
+          <NavBar.Item>
+            <SideBar.ToggleButton />
+          </NavBar.Item>
+          <NavBar.Item>
+            <h3>{selectedAccount?.name}</h3>
+          </NavBar.Item>
         </NavBar>
       </DashboardLayout.Nav>
       <DashboardLayout.Side>

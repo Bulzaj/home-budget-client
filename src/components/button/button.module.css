@@ -9,6 +9,7 @@
   background-color: transparent;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 1rem;
   outline: none;
 }
@@ -43,6 +44,8 @@
 .no-border {
   border: none;
   color: var(--color-grey);
+  padding: 0;
+  margin: 0;
 }
 
 .no-border:hover {
