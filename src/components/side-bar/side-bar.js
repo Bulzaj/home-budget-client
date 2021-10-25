@@ -81,4 +81,9 @@ const Label = (props) => {
 };
 SideBar.Label = Label;
 
+const Group = (props) => {
+  return <div className={classes.group}>{props.children}</div>;
+};
+SideBar.Group = Group;
+
 export default SideBar;

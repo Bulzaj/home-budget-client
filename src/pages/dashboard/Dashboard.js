@@ -1,58 +1,24 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { URL_API_ACCOUNT } from "../../utill/url-consts";
 import { useAuth } from "../../hooks/use-auth";
-import { useHistory } from "react-router";
 import NavBar from "../../components/nav-bar/nav-bar";
-import SideBar from "../../components/side-bar/side-bar";
 import {
   ProvideCollapseSideBar,
   useCollapseSidebar,
 } from "../../hooks/use-collapse-sidebar";
 import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
-import List from "../../components/list/list";
 import Card from "../../components/card/card";
 import HistoryCard from "../../containers/history-card/history-card";
+import SideBar from "../../components/side-bar/side-bar";
+import SideBarContainer from "../../containers/sidebar/sidebar";
+import { ProvideAccounts, useAccounts } from "../../hooks/use-accounts";
 
 // TODO: handle errors right way
 const Dashboard = () => {
-  const [accounts, setAccounts] = useState([]);
-  const [selectedAccount, setSellectedAccount] = useState(null);
+  const { selectedAccount, selectAccount } = useAccounts();
   const accessToken = useAuth().getAccessToken();
-  const redirect = useHistory().push;
   const { setNotVisible } = useCollapseSidebar();
 
-  // Fetch budget accounts
-  useEffect(() => {
-    const config = {
-      headers: {
-        authorization: `bearer ${accessToken}`,
-      },
-    };
-    const fetchAccounts = async () => {
-      try {
-        const accounts = await axios.get(URL_API_ACCOUNT, config);
-        setAccounts(accounts.data);
-      } catch (err) {
-        redirect("/");
-      }
-    };
-    fetchAccounts();
-  }, [accessToken, redirect]);
-
-  const itemWrapper = (item) => (
-    <SideBar.Item>
-      <h4>{item.name}</h4>
-      <h4>
-        {item.ammount} {item.currencyCode}
-      </h4>
-    </SideBar.Item>
-  );
-
-  const handleAccountClick = (_e, key) => {
-    const selectedAccount = accounts.find((account) => account._id === key);
-    delete selectedAccount.operationsHistory;
-    setSellectedAccount(selectedAccount);
+  const onAccountClickHandler = (_e, key) => {
+    selectAccount(key);
     setNotVisible();
   };
 
@@ -69,15 +35,7 @@ const Dashboard = () => {
         </NavBar>
       </DashboardLayout.Nav>
       <DashboardLayout.Side>
-        <SideBar>
-          <SideBar.Label>Accounts</SideBar.Label>
-          <List
-            itemKey="_id"
-            items={accounts}
-            wrapper={itemWrapper}
-            onItemClick={handleAccountClick}
-          />
-        </SideBar>
+        <SideBarContainer onAccountClickHandler={onAccountClickHandler} />
       </DashboardLayout.Side>
       <DashboardLayout.Main>
         <DashboardLayout.Content>
@@ -124,14 +82,16 @@ const Dashboard = () => {
   );
 };
 
-const withSidebarContext = (Component) => {
+const withContext = (Component) => {
   return (props) => {
     return (
-      <ProvideCollapseSideBar>
-        <Component {...props} />
-      </ProvideCollapseSideBar>
+      <ProvideAccounts>
+        <ProvideCollapseSideBar>
+          <Component {...props} />
+        </ProvideCollapseSideBar>
+      </ProvideAccounts>
     );
   };
 };
 
-export default withSidebarContext(Dashboard);
+export default withContext(Dashboard);

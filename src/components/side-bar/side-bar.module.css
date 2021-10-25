@@ -79,3 +79,7 @@
   background-color: var(--color-secondary);
   padding: 0rem 0.3rem;
 }
+
+.group {
+  margin-bottom: 2rem;
+}
