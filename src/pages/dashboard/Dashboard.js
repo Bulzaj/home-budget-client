@@ -10,6 +10,7 @@ import HistoryCard from "../../containers/history-card/history-card";
 import SideBar from "../../components/side-bar/side-bar";
 import SideBarContainer from "../../containers/sidebar/sidebar";
 import { ProvideAccounts, useAccounts } from "../../hooks/use-accounts";
+import { ProvideOperationsHistory } from "../../hooks/use-operations-history";
 
 // TODO: handle errors right way
 const Dashboard = () => {
@@ -86,9 +87,11 @@ const withContext = (Component) => {
   return (props) => {
     return (
       <ProvideAccounts>
-        <ProvideCollapseSideBar>
-          <Component {...props} />
-        </ProvideCollapseSideBar>
+        <ProvideOperationsHistory>
+          <ProvideCollapseSideBar>
+            <Component {...props} />
+          </ProvideCollapseSideBar>
+        </ProvideOperationsHistory>
       </ProvideAccounts>
     );
   };
