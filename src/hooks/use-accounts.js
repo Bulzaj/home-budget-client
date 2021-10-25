@@ -41,7 +41,7 @@ const useProvideContext = () => {
     fetchAccounts();
   }, [accessToken, redirect]);
 
-  const selectAccout = (key) => {
+  const selectAccount = (key) => {
     const selectedAccount = accounts.find((account) => account._id === key);
     delete selectedAccount.operationsHistory;
     setSelectedAccount(selectedAccount);
@@ -50,6 +50,6 @@ const useProvideContext = () => {
   return {
     accounts,
     selectedAccount,
-    selectAccout,
+    selectAccount,
   };
 };

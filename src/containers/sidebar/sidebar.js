@@ -21,7 +21,7 @@ const SideBarContainer = (props) => {
         itemKey="_id"
         items={accounts}
         wrapper={itemWrapper}
-        onItemClick={props.onAccountclickHandler}
+        onItemClick={props.onAccountClickHandler}
       />
     );
 
