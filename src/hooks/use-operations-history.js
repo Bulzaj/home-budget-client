@@ -2,8 +2,8 @@ import { createContext, useContext, useState } from "react";
 import { useAccounts } from "./use-accounts";
 import { useAuth } from "./use-auth";
 import { URL_API_ACCOUNT_HISTORY } from "../utill/url-consts";
-import axios from "axios";
 import { useEffect } from "react";
+import useFetch from "./use-fetch";
 
 const historyContext = createContext();
 
@@ -20,36 +20,10 @@ export const ProvideOperationsHistory = (props) => {
 export const useOperationsHistory = () => useContext(historyContext);
 
 const useProvideHistory = () => {
-  const [operationsHistory, setOperationsHistory] = useState([]);
-  const [dateFilter, setDateFIlter] = useState({ from: null, to: null });
   const accessToken = useAuth().getAccessToken();
   const { selectedAccount } = useAccounts();
-
-  const fetch = async () => {
-    const config = {
-      headers: {
-        authorization: `bearer ${accessToken}`,
-      },
-    };
-
-    try {
-      if (accessToken && selectedAccount) {
-        let url = `${URL_API_ACCOUNT_HISTORY}/${selectedAccount._id}?`;
-
-        if (dateFilter.from) url += `from=${dateFilter.from}&`;
-        if (dateFilter.to) url += `to=${dateFilter.to}&`;
-
-        const result = await axios.get(url, config);
-        setOperationsHistory(result.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetch();
-  }, [accessToken, selectedAccount]);
+  const [dateFilter, setDateFIlter] = useState({ from: null, to: null });
+  const history = useFetchHistory(accessToken, selectedAccount, dateFilter);
 
   const setFrom = (from) => {
     setDateFIlter((prevState) => {
@@ -70,10 +44,38 @@ const useProvideHistory = () => {
   };
 
   return {
-    operationsHistory,
+    operationsHistory: history.operationsHistory,
     dateFilter,
-    fetch,
+    fetchHistory: history.fetchHistory,
     setFrom,
     setTo,
   };
+};
+
+const useFetchHistory = (accessToken, selectedAccount, dateFilter) => {
+  const fetch = useFetch(accessToken);
+  const [operationsHistory, setOperationsHistory] = useState([]);
+
+  const fetchHistory = async () => {
+    if (!selectedAccount) return;
+
+    const url = `${URL_API_ACCOUNT_HISTORY}/${selectedAccount._id}`;
+    const queries = {
+      from: dateFilter?.from,
+      to: dateFilter?.to,
+    };
+
+    try {
+      const result = await fetch(url, queries);
+      setOperationsHistory(result.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchHistory();
+  }, [accessToken, selectedAccount]);
+
+  return { operationsHistory, fetchHistory };
 };

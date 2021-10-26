@@ -17,7 +17,7 @@ const itemWrapper = (item) => (
 
 const SideBarContainer = (props) => {
   const { accounts } = useAccounts();
-  const { fetch, setFrom, setTo } = useOperationsHistory();
+  const { fetchHistory, setFrom, setTo } = useOperationsHistory();
 
   let accountList = null;
   if (accounts)
@@ -32,7 +32,7 @@ const SideBarContainer = (props) => {
 
   const onFilterSubmit = (e) => {
     e.preventDefault();
-    fetch();
+    fetchHistory();
   };
 
   const onfromChange = (e) => {
