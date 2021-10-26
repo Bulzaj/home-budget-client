@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "./use-auth";
 import { useHistory } from "react-router";
-import axios from "axios";
 import { URL_API_ACCOUNT } from "../utill/url-consts";
 import useFetch from "./use-fetch";
 
@@ -28,8 +27,12 @@ const useProvideContext = () => {
 
   useEffect(() => {
     const fetchAccounts = async () => {
-      const result = await fetch(URL_API_ACCOUNT);
-      setAccounts(result.data);
+      try {
+        const result = await fetch(URL_API_ACCOUNT);
+        setAccounts(result.data);
+      } catch (err) {
+        redirect("/");
+      }
     };
     fetchAccounts();
   }, [accessToken, redirect]);
