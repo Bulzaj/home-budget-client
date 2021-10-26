@@ -5,6 +5,7 @@ import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import { FiFilter } from "react-icons/fi";
 import { useOperationsHistory } from "../../hooks/use-operations-history";
+import { useFilters } from "../../hooks/use-filter";
 
 const itemWrapper = (item) => (
   <SideBar.Item>
@@ -17,7 +18,8 @@ const itemWrapper = (item) => (
 
 const SideBarContainer = (props) => {
   const { accounts } = useAccounts();
-  const { fetchHistory, setFrom, setTo } = useOperationsHistory();
+  const { fetchHistory } = useOperationsHistory();
+  const { setFrom, setTo } = useFilters();
 
   let accountList = null;
   if (accounts)

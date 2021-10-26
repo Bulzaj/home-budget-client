@@ -4,6 +4,7 @@ import { useAuth } from "./use-auth";
 import { URL_API_ACCOUNT_HISTORY } from "../utill/url-consts";
 import { useEffect } from "react";
 import useFetch from "./use-fetch";
+import { useFilters } from "./use-filter";
 
 const historyContext = createContext();
 
@@ -22,33 +23,12 @@ export const useOperationsHistory = () => useContext(historyContext);
 const useProvideHistory = () => {
   const accessToken = useAuth().getAccessToken();
   const { selectedAccount } = useAccounts();
-  const [dateFilter, setDateFIlter] = useState({ from: null, to: null });
+  const { dateFilter } = useFilters();
   const history = useFetchHistory(accessToken, selectedAccount, dateFilter);
-
-  const setFrom = (from) => {
-    setDateFIlter((prevState) => {
-      return {
-        ...prevState,
-        from,
-      };
-    });
-  };
-
-  const setTo = (to) => {
-    setDateFIlter((prevState) => {
-      return {
-        ...prevState,
-        to,
-      };
-    });
-  };
 
   return {
     operationsHistory: history.operationsHistory,
-    dateFilter,
     fetchHistory: history.fetchHistory,
-    setFrom,
-    setTo,
   };
 };
 
