@@ -11,6 +11,7 @@ import SideBar from "../../components/side-bar/side-bar";
 import SideBarContainer from "../../containers/sidebar/sidebar";
 import { ProvideAccounts, useAccounts } from "../../hooks/use-accounts";
 import { ProvideOperationsHistory } from "../../hooks/use-operations-history";
+import { ProvideCashFlow } from "../../hooks/use-cash-flow";
 import ExpendituresSpecCard from "../../containers/expenditures-spec-card/expenditures-spec-card";
 
 // TODO: handle errors right way
@@ -68,9 +69,11 @@ const withContext = (Component) => {
     return (
       <ProvideAccounts>
         <ProvideOperationsHistory>
-          <ProvideCollapseSideBar>
-            <Component {...props} />
-          </ProvideCollapseSideBar>
+          <ProvideCashFlow>
+            <ProvideCollapseSideBar>
+              <Component {...props} />
+            </ProvideCollapseSideBar>
+          </ProvideCashFlow>
         </ProvideOperationsHistory>
       </ProvideAccounts>
     );
