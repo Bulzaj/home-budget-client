@@ -11,6 +11,9 @@ import SideBar from "../../components/side-bar/side-bar";
 import SideBarContainer from "../../containers/sidebar/sidebar";
 import { ProvideAccounts, useAccounts } from "../../hooks/use-accounts";
 import { ProvideOperationsHistory } from "../../hooks/use-operations-history";
+import { ProvideCashFlow } from "../../hooks/use-cash-flow";
+import { ProvideFilters } from "../../hooks/use-filter";
+import ExpendituresSpecCard from "../../containers/expenditures-spec-card/expenditures-spec-card";
 
 // TODO: handle errors right way
 const Dashboard = () => {
@@ -44,28 +47,7 @@ const Dashboard = () => {
             selectedAccount={selectedAccount}
             accessToken={accessToken}
           />
-          <Card title="Card 1">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              feugiat eros id sapien malesuada vehicula. Donec in porttitor
-              tortor. Mauris pellentesque dignissim magna ut posuere. Morbi elit
-              mi, gravida suscipit felis id, tincidunt pretium mi. Nam pharetra
-              metus sit amet feugiat dignissim. Proin in luctus nibh, ac
-              accumsan elit. In condimentum sodales bibendum. Ut vitae malesuada
-              urna.
-            </p>
-          </Card>
-          <Card title="Card 1">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              feugiat eros id sapien malesuada vehicula. Donec in porttitor
-              tortor. Mauris pellentesque dignissim magna ut posuere. Morbi elit
-              mi, gravida suscipit felis id, tincidunt pretium mi. Nam pharetra
-              metus sit amet feugiat dignissim. Proin in luctus nibh, ac
-              accumsan elit. In condimentum sodales bibendum. Ut vitae malesuada
-              urna.
-            </p>
-          </Card>
+          <ExpendituresSpecCard accessToken={accessToken} />
           <Card title="Card 1">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -87,11 +69,15 @@ const withContext = (Component) => {
   return (props) => {
     return (
       <ProvideAccounts>
-        <ProvideOperationsHistory>
-          <ProvideCollapseSideBar>
-            <Component {...props} />
-          </ProvideCollapseSideBar>
-        </ProvideOperationsHistory>
+        <ProvideFilters>
+          <ProvideOperationsHistory>
+            <ProvideCashFlow>
+              <ProvideCollapseSideBar>
+                <Component {...props} />
+              </ProvideCollapseSideBar>
+            </ProvideCashFlow>
+          </ProvideOperationsHistory>
+        </ProvideFilters>
       </ProvideAccounts>
     );
   };
