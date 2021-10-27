@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
 import Card from "../../components/card/card";
-import { useCashFlow } from "../../hooks/use-cash-flow";
+import { useSpec } from "../../hooks/use-spec";
 import { FaChartPie } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 
 const ExpendituresSpecCard = (props) => {
-  const { expendituresSpec } = useCashFlow();
+  const { expendituresSpec } = useSpec();
   const [data, setData] = useState([]);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import Button from "../../components/button/button";
 import { FiFilter } from "react-icons/fi";
 import { useOperationsHistory } from "../../hooks/use-operations-history";
 import { useFilters } from "../../hooks/use-filter";
+import { useSpec } from "../../hooks/use-spec";
 
 const itemWrapper = (item) => (
   <SideBar.Item>
@@ -19,7 +20,8 @@ const itemWrapper = (item) => (
 const SideBarContainer = (props) => {
   const { accounts } = useAccounts();
   const { fetchHistory } = useOperationsHistory();
-  const { setFrom, setTo } = useFilters();
+  const { fetchExpendituresSpec, fetchCashFlow } = useSpec();
+  const { setFrom, setTo, dateFilter } = useFilters();
 
   let accountList = null;
   if (accounts)
@@ -35,6 +37,8 @@ const SideBarContainer = (props) => {
   const onFilterSubmit = (e) => {
     e.preventDefault();
     fetchHistory();
+    fetchExpendituresSpec();
+    fetchCashFlow();
   };
 
   const onfromChange = (e) => {

@@ -1,4 +1,5 @@
 import classes from "./card.module.css";
+import { styles } from "../../utill/styles";
 
 const Card = (props) => {
   let icon = null;
@@ -12,7 +13,7 @@ const Card = (props) => {
   }
 
   return (
-    <div className={classes.card}>
+    <div className={styles(classes, "card", props.styles)}>
       <div className={classes.titleWrapper}>
         <h2 className={classes.title}>{props.title}</h2>
         {icon}
