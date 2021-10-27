@@ -19,7 +19,19 @@ const ExpendituresSpecCard = (props) => {
 
   let chart = null;
   if (data && data.length > 1) {
-    chart = <Chart chartType="PieChart" data={data} />;
+    chart = (
+      <Chart
+        chartType="PieChart"
+        data={data}
+        height="100%"
+        width="100%"
+        options={{
+          backgroundColor: {
+            fill: "transparent",
+          },
+        }}
+      />
+    );
   }
 
   return (
