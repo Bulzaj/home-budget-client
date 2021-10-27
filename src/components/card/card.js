@@ -23,4 +23,12 @@ const Card = (props) => {
   );
 };
 
+const Message = (props) => (
+  <div className={classes.messageWrapper}>
+    <props.messageIcon />
+    <h2 className={classes.message}>{props.children}</h2>
+  </div>
+);
+Card.Message = Message;
+
 export default Card;

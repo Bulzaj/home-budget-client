@@ -3,6 +3,7 @@ import Chart from "react-google-charts";
 import Card from "../../components/card/card";
 import { useCashFlow } from "../../hooks/use-cash-flow";
 import { FaChartPie } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 
 const ExpendituresSpecCard = (props) => {
   const { expendituresSpec } = useCashFlow();
@@ -17,7 +18,9 @@ const ExpendituresSpecCard = (props) => {
     setData([["Category", "Ammount"], ...expnedituresArray]);
   }, [expendituresSpec]);
 
-  let chart = null;
+  let chart = (
+    <Card.Message messageIcon={ImCross}>No expenditures found</Card.Message>
+  );
   if (data && data.length > 1) {
     chart = (
       <Chart

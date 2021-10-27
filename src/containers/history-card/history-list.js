@@ -3,6 +3,7 @@ import dateFormat from "dateformat";
 import classes from "./history-list.module.css";
 import { styles } from "../../utill/styles";
 import { ImCross } from "react-icons/im";
+import Card from "../../components/card/card";
 
 const OPERATION_TYPES = ["INCOME", "EXPENDITURE"];
 
@@ -31,12 +32,7 @@ const HistoryList = (props) => {
   };
 
   if (!props.items.length) {
-    return (
-      <div className={classes.messageWrapper}>
-        <ImCross />
-        <h2 className={classes.message}>No history found</h2>
-      </div>
-    );
+    return <Card.Message messageIcon={ImCross}>No history found</Card.Message>;
   }
 
   return <List items={props.items} wrapper={wrapper} />;
