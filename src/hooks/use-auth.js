@@ -56,6 +56,23 @@ const useProvideAuth = () => {
       onDone
     );
 
+  const logout = async (onDone) => {
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    const config = {
+      body: {
+        token: refreshToken,
+      },
+    };
+
+    await axios.delete(URL_API_AUTH + "/logout", config);
+
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
+    onDone && onDone();
+  };
+
   const getAccessToken = () => {
     return localStorage.getItem("accessToken");
   };
@@ -64,6 +81,7 @@ const useProvideAuth = () => {
     user,
     register,
     login,
+    logout,
     getAccessToken,
   };
 };
