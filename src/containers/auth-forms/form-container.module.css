@@ -14,3 +14,9 @@
 .paragraph {
   color: var(--color-grey-dark);
 }
+
+.errorMessage {
+  padding: 0.3rem;
+  font-weight: 700;
+  color: var(--color-danger-dark);
+}
