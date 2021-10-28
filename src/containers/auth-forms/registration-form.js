@@ -2,31 +2,22 @@ import Box from "../../components/box/box";
 import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import Image from "../../components/image/image";
-import classes from "./login-form.module.css";
+import List from "../../components/list/list";
+import classes from "./form-container.module.css";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineLogin } from "react-icons/hi";
-import loginImg from "../../assets/img/auth_image.png";
+import registerImage from "../../assets/img/new_user.ico";
 import { useAuth } from "../../hooks/use-auth";
 import useFormData from "../../hooks/use-form-data";
-import { useState } from "react";
 import { useHistory } from "react-router";
-import List from "../../components/list/list";
+import { useState } from "react";
 
-const LoginForm = (props) => {
+const RegistrationForm = (props) => {
   const auth = useAuth();
   const [errors, setErrors] = useState([]);
   const [formData, setdata] = useFormData();
   const history = useHistory();
-
-  const onLogInHandler = (e) => {
-    e.preventDefault();
-    auth
-      .login(formData, () => history.push("/dashboard"))
-      .catch((err) => {
-        setErrors(err.response.data);
-      });
-  };
 
   const onEmailInputChange = (e) => {
     e.preventDefault();
@@ -38,11 +29,29 @@ const LoginForm = (props) => {
     setdata({ password: e.target.value });
   };
 
+  const onSecretAgainInputChange = (e) => {
+    e.preventDefault();
+    setdata({ passwordAgain: e.target.value });
+  };
+
+  const onRegisterHandler = (e) => {
+    e.preventDefault();
+    auth
+      .register(formData, () => history.push("/dashboard"))
+      .catch((err) => {
+        setErrors(err.response.data);
+      });
+  };
+
+  const errorMsgWrapper = (item) => (
+    <p className={classes.errorMessage}>{item}</p>
+  );
+
   let errorsPane = null;
   if (errors.length) {
     errorsPane = (
       <Box styles={["transparent"]}>
-        <List styles={["danger"]} items={errors} />
+        <List styles={["danger"]} items={errors} wrapper={errorMsgWrapper} />
       </Box>
     );
   }
@@ -51,10 +60,10 @@ const LoginForm = (props) => {
     <div className={classes.container}>
       <Box>
         <Box styles={["transparent"]}>
-          <h1 className={classes.form__title}>Log in</h1>
+          <h1 className={classes.form__title}>Register</h1>
         </Box>
         <Box styles={["transparent"]}>
-          <Image src={loginImg} alt="login_image" />
+          <Image src={registerImage} alt="register_image" />
         </Box>
         <Form>
           <Box styles={["transparent", "full-width"]}>
@@ -73,25 +82,35 @@ const LoginForm = (props) => {
               onChange={onSecretInputChange}
             />
           </Box>
+          <Box styles={["transparent"]}>
+            <Form.Input
+              type="password"
+              icon={RiLockPasswordLine}
+              placeholder="Repeat your password..."
+              onChange={onSecretAgainInputChange}
+            />
+          </Box>
           {errorsPane}
           <Box styles={["transparent"]}>
             <Button
               icon={HiOutlineLogin}
               styles={["full-width"]}
-              onClick={onLogInHandler}
+              onClick={onRegisterHandler}
             >
-              Log in
+              Register
             </Button>
           </Box>
         </Form>
         <Box.Divider />
         <Box styles={["transparent"]}>
-          <p className={classes.paragraph}>New to us?</p>
-          <Button styles={["link"]}>Create account</Button>
+          <p className={classes.paragraph}>Or...</p>
+          <Button styles={["link"]} onClick={props.onToggleFormClick}>
+            Log in!
+          </Button>
         </Box>
       </Box>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;
