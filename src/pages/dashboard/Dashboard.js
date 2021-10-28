@@ -5,7 +5,6 @@ import {
   useCollapseSidebar,
 } from "../../hooks/use-collapse-sidebar";
 import DashboardLayout from "../../layouts/dashboard-layout/dashboard-layout";
-import Card from "../../components/card/card";
 import HistoryCard from "../../containers/history-card/history-card";
 import SideBar from "../../components/side-bar/side-bar";
 import SideBarContainer from "../../containers/sidebar/sidebar";
@@ -15,16 +14,25 @@ import { ProvideSpec } from "../../hooks/use-spec";
 import { ProvideFilters } from "../../hooks/use-filter";
 import ExpendituresSpecCard from "../../containers/expenditures-spec-card/expenditures-spec-card";
 import CashFlowCard from "../../containers/cash-flow-card/cash-flow-card";
+import { FiLogOut } from "react-icons/fi";
+import Button from "../../components/button/button";
+import { useHistory } from "react-router";
 
-// TODO: handle errors right way
 const Dashboard = () => {
   const { selectedAccount, selectAccount } = useAccounts();
   const accessToken = useAuth().getAccessToken();
   const { setNotVisible } = useCollapseSidebar();
+  const { logout } = useAuth();
+  const { push } = useHistory();
 
   const onAccountClickHandler = (_e, key) => {
     selectAccount(key);
     setNotVisible();
+  };
+
+  const logoutClickHandler = (e) => {
+    e.preventDefault();
+    logout(push("/"));
   };
 
   return (
@@ -36,6 +44,15 @@ const Dashboard = () => {
           </NavBar.Item>
           <NavBar.Item>
             <h3>{selectedAccount?.name}</h3>
+          </NavBar.Item>
+          <NavBar.Item>
+            <Button
+              icon={FiLogOut}
+              styles={["font-light"]}
+              onClick={logoutClickHandler}
+            >
+              Logout
+            </Button>
           </NavBar.Item>
         </NavBar>
       </DashboardLayout.Nav>
