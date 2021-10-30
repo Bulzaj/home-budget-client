@@ -7,6 +7,8 @@ import { FiFilter } from "react-icons/fi";
 import { useOperationsHistory } from "../../hooks/use-operations-history";
 import { useFilters } from "../../hooks/use-filter";
 import { useSpec } from "../../hooks/use-spec";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { useModal } from "../../hooks/use-modal";
 
 const itemWrapper = (item) => (
   <SideBar.Item>
@@ -22,6 +24,7 @@ const SideBarContainer = (props) => {
   const { fetchHistory } = useOperationsHistory();
   const { fetchExpendituresSpec, fetchCashFlow } = useSpec();
   const { setFrom, setTo, dateFilter } = useFilters();
+  const { open } = useModal();
 
   let accountList = null;
   if (accounts)
@@ -51,11 +54,19 @@ const SideBarContainer = (props) => {
     setTo(new Date(e.target.value));
   };
 
+  const newAccountHandler = (e) => {
+    e.preventDefault();
+    open();
+  };
+
   return (
     <SideBar>
       <SideBar.Group>
         <SideBar.Label>Accounts</SideBar.Label>
         {accountList}
+        <Button icon={AiOutlineAppstoreAdd} onClick={newAccountHandler}>
+          New account
+        </Button>
       </SideBar.Group>
       <SideBar.Group>
         <SideBar.Label>Filters</SideBar.Label>
@@ -68,10 +79,10 @@ const SideBarContainer = (props) => {
             <Form.Label>To:</Form.Label>
             <Form.Date onChange={onToChange} />
           </Form.Group>
-          <Button onClick={onFilterSubmit} icon={FiFilter}>
-            Filter
-          </Button>
         </Form>
+        <Button onClick={onFilterSubmit} icon={FiFilter}>
+          Filter
+        </Button>
       </SideBar.Group>
     </SideBar>
   );

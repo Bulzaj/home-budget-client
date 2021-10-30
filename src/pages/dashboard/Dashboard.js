@@ -16,7 +16,11 @@ import ExpendituresSpecCard from "../../containers/expenditures-spec-card/expend
 import CashFlowCard from "../../containers/cash-flow-card/cash-flow-card";
 import { FiLogOut } from "react-icons/fi";
 import Button from "../../components/button/button";
+import { ProvideModal } from "../../hooks/use-modal";
 import { useHistory } from "react-router";
+import Modal from "../../components/modal/modal";
+import { IoIosAddCircle } from "react-icons/io";
+import Form from "../../components/form/form";
 
 const Dashboard = () => {
   const { selectedAccount, selectAccount } = useAccounts();
@@ -37,6 +41,9 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
+      <Modal title="New account" icon={IoIosAddCircle}>
+        <Form></Form>
+      </Modal>
       <DashboardLayout.Nav>
         <NavBar>
           <NavBar.Item>
@@ -80,9 +87,11 @@ const withContext = (Component) => {
         <ProvideFilters>
           <ProvideOperationsHistory>
             <ProvideSpec>
-              <ProvideCollapseSideBar>
-                <Component {...props} />
-              </ProvideCollapseSideBar>
+              <ProvideModal>
+                <ProvideCollapseSideBar>
+                  <Component {...props} />
+                </ProvideCollapseSideBar>
+              </ProvideModal>
             </ProvideSpec>
           </ProvideOperationsHistory>
         </ProvideFilters>
