@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "./use-auth";
 import { useHistory } from "react-router";
-import { URL_API_ACCOUNT } from "../utill/url-consts";
+import { URL_API_ACCOUNT, URL_API_CURRENCIES } from "../utill/url-consts";
 import useFetch from "./use-fetch";
 
 const accountsContext = createContext();
@@ -20,6 +20,7 @@ export const useAccounts = () => useContext(accountsContext);
 
 const useProvideContext = () => {
   const [accounts, setAccounts] = useState(null);
+  const [currencies, setCurrencies] = useState(null);
   const [selectedAccount, setSelectedAccount] = useState(null);
   const accessToken = useAuth().getAccessToken();
   const redirect = useHistory().push;
@@ -34,7 +35,12 @@ const useProvideContext = () => {
         redirect("/");
       }
     };
+    const fetchCurrencies = async () => {
+      const result = await fetch(URL_API_CURRENCIES);
+      setCurrencies(result.data);
+    };
     fetchAccounts();
+    fetchCurrencies();
   }, [accessToken, redirect]);
 
   const selectAccount = (key) => {
@@ -45,6 +51,7 @@ const useProvideContext = () => {
 
   return {
     accounts,
+    currencies,
     selectedAccount,
     selectAccount,
   };

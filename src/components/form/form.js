@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { styles } from "../../utill/styles";
 import classes from "./form.module.css";
 
@@ -31,6 +32,25 @@ const Input = (props) => {
   );
 };
 Form.Input = Input;
+
+const Select = (props) => {
+  if (!props.data) return <h4>No data provided</h4>;
+
+  return (
+    <div className={classes.input__wrapper}>
+      <input list={props.dataName} className={classes.input} />
+      <datalist id={props.dataName}>
+        {props?.data.map((item) => props.option(item))}
+      </datalist>
+    </div>
+  );
+};
+Form.Select = Select;
+
+const Option = (props) => {
+  return <option key={props.key} value={props.value} />;
+};
+Form.Option = Option;
 
 const Group = (props) => {
   return (
