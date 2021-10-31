@@ -1,25 +1,41 @@
 import axios from "axios";
+import { useState } from "react";
 
-const useFetch = (accessToken) => {
-  const fetch = async (url, queries) => {
-    if (!accessToken) throw new Error("Access token is not provided");
+const useFetch = (accessToken, method) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetchin] = useState(false);
 
-    const config = {
-      headers: {
-        contentType: "application/json",
-        authorization: `bearer ${accessToken}`,
-      },
-    };
+  const config = {
+    headers: {
+      contentType: "application/json",
+      authorization: `bearer ${accessToken}`,
+    },
+  };
 
+  const fetch = async (url, queries, body) => {
+    if (isFetching) return;
+
+    setIsLoading(true);
     try {
       const newUrl = generateUrl(url, queries);
-      return await axios.get(newUrl, config);
+
+      let result = null;
+
+      setIsFetchin(true);
+
+      if (method === "POST") result = await axios.post(newUrl, body, config);
+      result = await axios.get(newUrl, config);
+
+      setIsLoading(false);
+      setIsFetchin(false);
+      return result.data;
     } catch (err) {
+      setIsLoading(false);
       throw err;
     }
   };
 
-  return fetch;
+  return { fetch, isLoading };
 };
 
 const generateUrl = (url, queries = null) => {
