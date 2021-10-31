@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const useFetch = (accessToken, method) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isFetching, setIsFetchin] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const config = {
     headers: {
@@ -21,13 +21,13 @@ const useFetch = (accessToken, method) => {
 
       let result = null;
 
-      setIsFetchin(true);
+      setIsFetching(true);
 
       if (method === "POST") result = await axios.post(newUrl, body, config);
       result = await axios.get(newUrl, config);
 
       setIsLoading(false);
-      setIsFetchin(false);
+      setIsFetching(false);
       return result.data;
     } catch (err) {
       setIsLoading(false);
