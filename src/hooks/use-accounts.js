@@ -1,8 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { useAuth } from "./use-auth";
-import { useHistory } from "react-router";
-import { URL_API_ACCOUNT, URL_API_CURRENCIES } from "../utill/url-consts";
-import useFetch from "./use-fetch";
+import { createContext, useContext, useState } from "react";
 
 const accountsContext = createContext();
 
@@ -22,26 +18,6 @@ const useProvideContext = () => {
   const [accounts, setAccounts] = useState(null);
   const [currencies, setCurrencies] = useState(null);
   const [selectedAccount, setSelectedAccount] = useState(null);
-  const accessToken = useAuth().getAccessToken();
-  const redirect = useHistory().push;
-  const fetch = useFetch(accessToken);
-
-  useEffect(() => {
-    const fetchAccounts = async () => {
-      try {
-        const result = await fetch(URL_API_ACCOUNT);
-        setAccounts(result.data);
-      } catch (err) {
-        redirect("/");
-      }
-    };
-    const fetchCurrencies = async () => {
-      const result = await fetch(URL_API_CURRENCIES);
-      setCurrencies(result.data);
-    };
-    fetchAccounts();
-    fetchCurrencies();
-  }, [accessToken, redirect]);
 
   const selectAccount = (key) => {
     const selectedAccount = accounts.find((account) => account._id === key);
@@ -51,7 +27,9 @@ const useProvideContext = () => {
 
   return {
     accounts,
+    setAccounts,
     currencies,
+    setCurrencies,
     selectedAccount,
     selectAccount,
   };

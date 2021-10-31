@@ -21,16 +21,11 @@ import { useHistory } from "react-router";
 import NewAccountModal from "../../containers/new-account-modal/new-account-modal";
 
 const Dashboard = () => {
-  const { selectedAccount, selectAccount, currencies } = useAccounts();
+  const { selectedAccount, selectAccount } = useAccounts();
   const accessToken = useAuth().getAccessToken();
   const { setNotVisible } = useCollapseSidebar();
   const { logout } = useAuth();
   const { push } = useHistory();
-
-  const onAccountClickHandler = (_e, key) => {
-    selectAccount(key);
-    setNotVisible();
-  };
 
   const logoutClickHandler = (e) => {
     e.preventDefault();
@@ -60,7 +55,7 @@ const Dashboard = () => {
         </NavBar>
       </DashboardLayout.Nav>
       <DashboardLayout.Side>
-        <SideBarContainer onAccountClickHandler={onAccountClickHandler} />
+        <SideBarContainer accessToken={accessToken} />
       </DashboardLayout.Side>
       <DashboardLayout.Main>
         <DashboardLayout.Content>
