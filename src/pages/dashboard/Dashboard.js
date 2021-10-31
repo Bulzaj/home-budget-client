@@ -18,11 +18,7 @@ import { FiLogOut } from "react-icons/fi";
 import Button from "../../components/button/button";
 import { ProvideModal } from "../../hooks/use-modal";
 import { useHistory } from "react-router";
-import Modal from "../../components/modal/modal";
-import { IoIosAddCircle } from "react-icons/io";
-import Form from "../../components/form/form";
-import { useEffect } from "react";
-import { ItemMeta } from "semantic-ui-react";
+import NewAccountModal from "../../containers/new-account-modal/new-account-modal";
 
 const Dashboard = () => {
   const { selectedAccount, selectAccount, currencies } = useAccounts();
@@ -41,38 +37,9 @@ const Dashboard = () => {
     logout(push("/"));
   };
 
-  const createNewAccountHandler = (e) => {};
-
-  const option = (item) => (
-    <Form.Option key={item.code} value={`${item.code} ${item.name}`} />
-  );
-
   return (
     <DashboardLayout>
-      <Modal
-        title="New account"
-        icon={IoIosAddCircle}
-        onSuccess={createNewAccountHandler}
-      >
-        <Form>
-          <Form.Group>
-            <Form.Label>Account name</Form.Label>
-            <Form.Input />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Start ammount</Form.Label>
-            <Form.Input type="number" />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Select currency</Form.Label>
-            <Form.Select
-              data={currencies}
-              dataName="currencies_data"
-              option={option}
-            />
-          </Form.Group>
-        </Form>
-      </Modal>
+      <NewAccountModal />
       <DashboardLayout.Nav>
         <NavBar>
           <NavBar.Item>
