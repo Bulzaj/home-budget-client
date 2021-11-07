@@ -62,7 +62,10 @@ const Dashboard = () => {
             selectedAccount={selectedAccount}
             accessToken={accessToken}
           />
-          {/*<CashFlowCard /> */}
+          <CashFlowCard
+            selectedAccount={selectedAccount}
+            accessToken={accessToken}
+          />
         </DashboardLayout.Content>
       </DashboardLayout.Main>
     </DashboardLayout>
