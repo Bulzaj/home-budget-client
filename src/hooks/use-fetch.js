@@ -3,39 +3,41 @@ import { useState } from "react";
 
 const useFetch = (accessToken, method) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
 
-  const config = {
-    headers: {
-      contentType: "application/json",
-      authorization: `bearer ${accessToken}`,
-    },
-  };
-
-  const fetch = async (url, queries, body) => {
+  const fetch = async (config) => {
     if (isFetching) return;
 
     setIsLoading(true);
+    setError(null);
     try {
-      const newUrl = generateUrl(url, queries);
+      const newUrl = generateUrl(config.url, config.queries);
 
       let result = null;
 
       setIsFetching(true);
 
-      if (method === "POST") result = await axios.post(newUrl, body, config);
-      result = await axios.get(newUrl, config);
+      result = await axios({
+        method: config.method || "GET",
+        url: newUrl,
+        data: config.body || {},
+        headers: {
+          contentType: "application/json",
+          authorization: `bearer ${accessToken}`,
+        },
+      });
 
       setIsLoading(false);
       setIsFetching(false);
       return result.data;
     } catch (err) {
       setIsLoading(false);
-      throw err;
+      setError(err.message);
     }
   };
 
-  return { fetch, isLoading };
+  return { fetch, isLoading, error };
 };
 
 const generateUrl = (url, queries = null) => {
