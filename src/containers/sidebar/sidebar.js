@@ -2,19 +2,16 @@ import SideBar from "../../components/side-bar/side-bar";
 import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import { FiFilter } from "react-icons/fi";
-import { useOperationsHistory } from "../../hooks/use-operations-history";
 import { useFilters } from "../../hooks/use-filter";
 import { useSpec } from "../../hooks/use-spec";
 import AccountsGroup from "./accounts-group";
 
 const SideBarContainer = (props) => {
-  const { fetchHistory } = useOperationsHistory();
   const { fetchExpendituresSpec, fetchCashFlow } = useSpec();
   const { setFrom, setTo } = useFilters();
 
   const onFilterSubmit = (e) => {
     e.preventDefault();
-    fetchHistory();
     fetchExpendituresSpec();
     fetchCashFlow();
   };
