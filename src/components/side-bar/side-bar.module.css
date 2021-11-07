@@ -81,5 +81,8 @@
 }
 
 .group {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 0.4rem;
   margin-bottom: 2rem;
 }

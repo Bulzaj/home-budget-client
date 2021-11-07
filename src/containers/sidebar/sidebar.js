@@ -1,62 +1,34 @@
 import SideBar from "../../components/side-bar/side-bar";
-import List from "../../components/list/list";
-import { useAccounts } from "../../hooks/use-accounts";
 import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import { FiFilter } from "react-icons/fi";
-import { useOperationsHistory } from "../../hooks/use-operations-history";
 import { useFilters } from "../../hooks/use-filter";
-import { useSpec } from "../../hooks/use-spec";
-
-const itemWrapper = (item) => (
-  <SideBar.Item>
-    <h4>{item.name}</h4>
-    <h4>
-      {item.ammount} {item.currencyCode}
-    </h4>
-  </SideBar.Item>
-);
+import AccountsGroup from "./accounts-group";
+import useFormData from "../../hooks/use-form-data";
 
 const SideBarContainer = (props) => {
-  const { accounts } = useAccounts();
-  const { fetchHistory } = useOperationsHistory();
-  const { fetchExpendituresSpec, fetchCashFlow } = useSpec();
-  const { setFrom, setTo, dateFilter } = useFilters();
-
-  let accountList = null;
-  if (accounts)
-    accountList = (
-      <List
-        itemKey="_id"
-        items={accounts}
-        wrapper={itemWrapper}
-        onItemClick={props.onAccountClickHandler}
-      />
-    );
+  const { setFrom, setTo } = useFilters();
+  const [formData, setData] = useFormData();
 
   const onFilterSubmit = (e) => {
     e.preventDefault();
-    fetchHistory();
-    fetchExpendituresSpec();
-    fetchCashFlow();
+    setFrom(formData.from);
+    setTo(formData.to);
   };
 
   const onfromChange = (e) => {
     e.preventDefault();
-    setFrom(new Date(e.target.value));
+    setData({ from: e.target.value });
   };
 
   const onToChange = (e) => {
     e.preventDefault();
-    setTo(new Date(e.target.value));
+    setData({ to: e.target.value });
   };
 
   return (
     <SideBar>
-      <SideBar.Group>
-        <SideBar.Label>Accounts</SideBar.Label>
-        {accountList}
-      </SideBar.Group>
+      <AccountsGroup accessToken={props.accessToken} />
       <SideBar.Group>
         <SideBar.Label>Filters</SideBar.Label>
         <Form>
@@ -68,10 +40,10 @@ const SideBarContainer = (props) => {
             <Form.Label>To:</Form.Label>
             <Form.Date onChange={onToChange} />
           </Form.Group>
-          <Button onClick={onFilterSubmit} icon={FiFilter}>
-            Filter
-          </Button>
         </Form>
+        <Button onClick={onFilterSubmit} icon={FiFilter}>
+          Filter
+        </Button>
       </SideBar.Group>
     </SideBar>
   );

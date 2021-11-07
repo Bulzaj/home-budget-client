@@ -62,3 +62,21 @@
 .font-light {
   color: var(--color-grey-light);
 }
+
+.success {
+  border-color: var(--color-success);
+}
+
+.success:hover {
+  background-color: var(--color-success);
+  color: var(--color-grey-light);
+}
+
+.danger {
+  border-color: var(--color-danger);
+}
+
+.danger:hover {
+  background-color: var(--color-danger);
+  color: var(--color-grey-light);
+}
