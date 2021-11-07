@@ -3,27 +3,27 @@ import Form from "../../components/form/form";
 import Button from "../../components/button/button";
 import { FiFilter } from "react-icons/fi";
 import { useFilters } from "../../hooks/use-filter";
-import { useSpec } from "../../hooks/use-spec";
 import AccountsGroup from "./accounts-group";
+import useFormData from "../../hooks/use-form-data";
 
 const SideBarContainer = (props) => {
-  const { fetchExpendituresSpec, fetchCashFlow } = useSpec();
   const { setFrom, setTo } = useFilters();
+  const [formData, setData] = useFormData();
 
   const onFilterSubmit = (e) => {
     e.preventDefault();
-    fetchExpendituresSpec();
-    fetchCashFlow();
+    setFrom(formData.from);
+    setTo(formData.to);
   };
 
   const onfromChange = (e) => {
     e.preventDefault();
-    setFrom(new Date(e.target.value));
+    setData({ from: e.target.value });
   };
 
   const onToChange = (e) => {
     e.preventDefault();
-    setTo(new Date(e.target.value));
+    setData({ to: e.target.value });
   };
 
   return (
