@@ -13,7 +13,7 @@ export const ProvideSpec = (props) => {
 export const useSpec = () => useContext(specContext);
 
 const useProvideSpec = () => {
-  const [operationsHistory, setOperationsHistory] = useState(null);
+  const [operationsHistory, setOperationsHistory] = useState([]);
   const [expendituresSpec, setExpendituresSpec] = useState(null);
   const [cashFlow, setCashFlow] = useState(null);
 
