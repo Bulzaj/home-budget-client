@@ -27,13 +27,13 @@ const AccountsGroup = (props) => {
 
   useEffect(() => {
     const fetchAccounts = async () => {
-      const result = await fetch(URL_API_ACCOUNT);
+      const result = await fetch({ url: URL_API_ACCOUNT });
       setAccounts(result);
     };
     if (!accounts) {
       fetchAccounts();
     }
-  }, [isLoading]);
+  }, []);
 
   const newAccountHandler = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const AccountsGroup = (props) => {
   };
 
   let accountList = <Spinner />;
-  if (accounts)
+  if (accounts && !isLoading) {
     accountList = (
       <List
         itemKey="_id"
@@ -55,6 +55,7 @@ const AccountsGroup = (props) => {
         onItemClick={selectAccountHandler}
       />
     );
+  }
 
   return (
     <SideBar.Group>
