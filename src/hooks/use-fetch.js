@@ -27,7 +27,6 @@ const useFetch = (accessToken, method) => {
           authorization: `bearer ${accessToken}`,
         },
       });
-
       setIsLoading(false);
       setIsFetching(false);
       return result.data;
