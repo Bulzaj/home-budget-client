@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { styles } from "../../utill/styles";
 import classes from "./form.module.css";
 
@@ -38,7 +37,11 @@ const Select = (props) => {
 
   return (
     <div className={classes.input__wrapper}>
-      <input list={props.dataName} className={classes.input} />
+      <input
+        list={props.dataName}
+        className={classes.input}
+        onChange={props.onChange}
+      />
       <datalist id={props.dataName}>
         {props?.data.map((item) => props.option(item))}
       </datalist>
